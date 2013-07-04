@@ -14,9 +14,9 @@ using System.Data;
 
     enum Status
     {
-        Created = 1,
-        AssCreated = 2,
-        AssDelivered = 3,
+        //Created = 1,
+        //AssCreated = 2,
+        //AssDelivered = 3,
         AssReturned = 4
     }
 

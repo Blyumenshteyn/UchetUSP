@@ -90,7 +90,7 @@ namespace UchetUSP.WinForms.settings
         {
             this.Text += " " + SQLOracle.GetCurrentUser();
 
-            if (SQLOracle.exist((object)SQLOracle.GetCurrentUser(), "USER", "USP_USER_SETTING"))
+            if (SQLOracle.exist((object)SQLOracle.GetCurrentUser(), "USR", "USP_USER_SETTING"))
             {
               
             }
