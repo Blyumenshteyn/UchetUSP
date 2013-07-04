@@ -40,7 +40,7 @@ namespace UchetUSP
             _assemblyTitle = _ASSEMBLIES.getAssemblyTitle_orderNum(_orderNum);
 
             //c проектированием или состав сборки уже введен
-            if (_ASSEMBLY_ORDERS.getAssId(_orderNum) != 0)
+            if (AssemblyOrders.getAssId(_orderNum) != 0)
             {
                 _isWithoutProject = false;
                 _lastPage--;
@@ -92,8 +92,8 @@ namespace UchetUSP
             lblHeader.Text = "¬ведите данные исполнени€ заказа";
             pnlHeader.Visible = true;
 
-            tBSectorNum.Text = _ASSEMBLY_ORDERS.getSectorNumSettings();
-            tBBrigadierSurname.Text = _ASSEMBLY_ORDERS.getBrigadierSurnameSettings();
+            tBSectorNum.Text = AssemblyOrders.getSectorNumSettings();
+            tBBrigadierSurname.Text = AssemblyOrders.getBrigadierSurnameSettings();
 
             bttnNext.Enabled = true; //при переходе со след. страницы назад
 
@@ -243,7 +243,7 @@ namespace UchetUSP
 
         void _writeElementsInTZ(Dictionary<string, string> Dict)
         {
-            string TZId = _ASSEMBLY_ORDERS.getTZId(_orderNum);
+            string TZId = AssemblyOrders.getTZId(_orderNum);
 
             int position = 1;
             foreach (KeyValuePair<string, string> Pair in Dict)
@@ -264,9 +264,9 @@ namespace UchetUSP
 
         void writeTZUtv(Dictionary<string, string> Dict)
         {
-            if (_ASSEMBLY_ORDERS.isTZ(_orderNum))
+            if (AssemblyOrders.isTZ(_orderNum))
             {
-                string TZId = _ASSEMBLY_ORDERS.getTZId(_orderNum);
+                string TZId = AssemblyOrders.getTZId(_orderNum);
                 int nElements = Instrumentary.getSumListValues(Dict);
 
                 Dictionary<string, string> PDict = new Dictionary<string, string>();

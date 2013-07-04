@@ -234,7 +234,7 @@ namespace UchetUSP
             {
                 if (_isTZ == true)
                 {
-                    DateTime date = _ASSEMBLY_ORDERS.getPlanProductionDate_TZnumber(_idDoc);
+                    DateTime date = AssemblyOrders.getPlanProductionDate_TZnumber(_idDoc);
                     if (date.Date != new DateTime(1, 1, 1))
                     {
                         dTPDemand.Value = date;
@@ -242,7 +242,7 @@ namespace UchetUSP
                 }
                 else
                 {
-                    dTPDemand.Value = _ASSEMBLY_ORDERS.getPlanProductionDate_VPPnumber(_VPPNumber);
+                    dTPDemand.Value = AssemblyOrders.getPlanProductionDate_VPPnumber(_VPPNumber);
                 }
             }
 
@@ -345,7 +345,7 @@ namespace UchetUSP
                         if (_isTZ)
                         {
                             _setBothDict("VPP_NUM", "");
-                            _setBothDict("TZ_NUM", _ASSEMBLY_ORDERS.getTZnum(_idDoc));
+                            _setBothDict("TZ_NUM", AssemblyOrders.getTZnum(_idDoc));
                             _setDict(_D, "ID_TZ", _VPPNumber);
                         }
                         else
@@ -491,7 +491,7 @@ namespace UchetUSP
                 }
             }
 
-            _setDict(_Dexcel, "BRIGADIER_SURNAME", _ASSEMBLY_ORDERS.getBrigadierSurnameSettings());
+            _setDict(_Dexcel, "BRIGADIER_SURNAME", AssemblyOrders.getBrigadierSurnameSettings());
         }
 
         //чтение характеристик
@@ -729,17 +729,17 @@ namespace UchetUSP
                 key = "WORKSHOP_CODE";
                 if (_Dexcel.ContainsKey(key))
                     _Dexcel.Remove(key);
-                _Dexcel.Add(key, _ASSEMBLY_ORDERS.getWorkshopCode_TZ(_idDoc));
+                _Dexcel.Add(key, AssemblyOrders.getWorkshopCode_TZ(_idDoc));
 
                 key = "PRODUCT_CODE";
                 if (_Dexcel.ContainsKey(key))
                     _Dexcel.Remove(key);
-                _Dexcel.Add(key, _ASSEMBLY_ORDERS.getProductCode_TZ(_idDoc));
+                _Dexcel.Add(key, AssemblyOrders.getProductCode_TZ(_idDoc));
 
                 key = "PART_TITLE";
                 if (_Dexcel.ContainsKey(key))
                     _Dexcel.Remove(key);
-                _Dexcel.Add(key, _ASSEMBLY_ORDERS.getPartTitle_TZ(_idDoc).Trim());
+                _Dexcel.Add(key, AssemblyOrders.getPartTitle_TZ(_idDoc).Trim());
             }
             else
             {

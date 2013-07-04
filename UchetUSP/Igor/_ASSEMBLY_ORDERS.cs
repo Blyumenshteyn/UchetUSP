@@ -1,45 +1,51 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data;
-using System.Windows.Forms;
 
+
+/// <summary>
+    /// РљР»Р°СЃСЃ СЃРѕ СЃС‚Р°С‚РёС‡РµСЃРєРёРјРё РјРµС‚РѕРґР°РјРё, СЂРµР°Р»РёР·СѓСЋС‰РёРµ SQL-Р·Р°РїСЂРѕСЃС‹ Рє РґР°РЅРЅС‹Рј Р·Р°РєР°Р·Р° (Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°, Р’РџРџ ...)
+    /// </summary>
+    static class AssemblyOrders
+    {
+    private const string Table = " from USP_ASSEMBLY_ORDERS";
+    private const string Where = " where NUM = '";
+    private const string VppTable = "VPP_POZ20";
+
+    enum Status
+    {
+        Created = 1,
+        AssCreated = 2,
+        AssDelivered = 3,
+        AssReturned = 4
+    }
+
+    private const string EndQuery = Table + Where;
 
     /// <summary>
-    /// Класс со статическими методами, реализующие SQL-запросы к данным заказа (листа заказа, ВПП ...)
-    /// </summary>
-    class _ASSEMBLY_ORDERS
-    {
-        static string _table = " from USP_ASSEMBLY_ORDERS";
-        static string _where = " where NUM = '";
-        static string _VPPtable = "VPP_POZ20";
-
-        static string _endQuery = _table + _where;
-
-        /// <summary>
-        /// Возвращает дату создания сборки УСПО
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РґР°С‚Сѓ СЃРѕР·РґР°РЅРёСЏ СЃР±РѕСЂРєРё РЈРЎРџРћ
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static DateTime getAssCreationDate(string orderNum)
         {
-            return SQLOracle.selectDate("select ASSEMBLY_CREATION_DATE" + _table + _where + orderNum + "'");
+            return SQLOracle.selectDate("select ASSEMBLY_CREATION_DATE" + Table + Where + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает фамилию сборщика УСПО по номеру заказа
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ СЃР±РѕСЂС‰РёРєР° РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getAssCreatorSurname(string orderNum)
         {
-            return SQLOracle.selectStr("select ASSEMBLY_CREATOR_SURNAME" + _table + _where + orderNum + "'");
+            return SQLOracle.selectStr("select ASSEMBLY_CREATOR_SURNAME" + Table + Where + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает сложность сборки УСПО
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃР»РѕР¶РЅРѕСЃС‚СЊ СЃР±РѕСЂРєРё РЈРЎРџРћ
         /// </summary>
-        /// <param name="id">id сборки УСПО</param>
+        /// <param name="id">id СЃР±РѕСЂРєРё РЈРЎРџРћ</param>
         /// <returns></returns>
         public static int getAssDiffic(int id)
         {
@@ -50,9 +56,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает дату поставки сборки УСПО заказчику
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РґР°С‚Сѓ РїРѕСЃС‚Р°РІРєРё СЃР±РѕСЂРєРё РЈРЎРџРћ Р·Р°РєР°Р·С‡РёРєСѓ
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static DateTime getAssDeliveryDate(string orderNum)
         {
@@ -60,39 +66,39 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает должность получающего сборку
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РґРѕР»Р¶РЅРѕСЃС‚СЊ РїРѕР»СѓС‡Р°СЋС‰РµРіРѕ СЃР±РѕСЂРєСѓ
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getAssGeterPosition(string orderNum)
         {
-            return SQLOracle.selectStr("select ASSEMBLY_GETER_POSITION" + _endQuery + orderNum + "'");
+            return SQLOracle.selectStr("select ASSEMBLY_GETER_POSITION" + EndQuery + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает фамилию получающего сборку
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ РїРѕР»СѓС‡Р°СЋС‰РµРіРѕ СЃР±РѕСЂРєСѓ
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getAssGeterSurname(string orderNum)
         {
-            return SQLOracle.selectStr("select ASSEMBLY_GETER_SURNAME" + _endQuery + orderNum + "'");
+            return SQLOracle.selectStr("select ASSEMBLY_GETER_SURNAME" + EndQuery + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает фамилию выдающего сборку
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ РІС‹РґР°СЋС‰РµРіРѕ СЃР±РѕСЂРєСѓ
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getAssGiverSurname(string orderNum)
         {
-            return SQLOracle.selectStr("select ASSEMBLY_GIVER_SURNAME" + _endQuery + orderNum + "'");
+            return SQLOracle.selectStr("select ASSEMBLY_GIVER_SURNAME" + EndQuery + orderNum + "'");
         }
 
         /// <summary>
-        /// Метод возвращает id сборки листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ id СЃР±РѕСЂРєРё Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getAssId(string orderNum)
         {
@@ -103,9 +109,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает номерок сборки УСПО по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂРѕРє СЃР±РѕСЂРєРё РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getAssNum(string num)
         {
@@ -116,19 +122,19 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает плановую дату возврата сборки
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РїР»Р°РЅРѕРІСѓСЋ РґР°С‚Сѓ РІРѕР·РІСЂР°С‚Р° СЃР±РѕСЂРєРё
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static DateTime getAssPlannedReturnDate(string orderNum)
         {
-            return SQLOracle.selectDate("select ASSEMBLY_PLANNED_RETURN_DATE" + _endQuery + orderNum + "'");
+            return SQLOracle.selectDate("select ASSEMBLY_PLANNED_RETURN_DATE" + EndQuery + orderNum + "'");
         }
 
         /// <summary>
-        /// Метод возвращает дату возврата сборки в цех УСПО по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РґР°С‚Сѓ РІРѕР·РІСЂР°С‚Р° СЃР±РѕСЂРєРё РІ С†РµС… РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static DateTime getAssReturnDate(string num)
         {
@@ -139,9 +145,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает фамилию возвращающего сборку в цех УСПО по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ РІРѕР·РІСЂР°С‰Р°СЋС‰РµРіРѕ СЃР±РѕСЂРєСѓ РІ С†РµС… РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getAssReturnGiverSurname(string num)
         {
@@ -152,9 +158,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает фамилию получающего обратно сборку в цех УСПО по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ РїРѕР»СѓС‡Р°СЋС‰РµРіРѕ РѕР±СЂР°С‚РЅРѕ СЃР±РѕСЂРєСѓ РІ С†РµС… РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getAssReturnGeterSurname(string num)
         {
@@ -165,19 +171,19 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает участка УСПО по номеру заказа
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓС‡Р°СЃС‚РєР° РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getAssSectorNum(string orderNum)
         {
-            return SQLOracle.selectStr("select ASSEMBLY_SECTOR_NUM" + _endQuery + orderNum + "'");
+            return SQLOracle.selectStr("select ASSEMBLY_SECTOR_NUM" + EndQuery + orderNum + "'");
         }
 
         /// <summary>
-        /// Метод возвращает фамилию бригадира (мастера участка) УСПО по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ Р±СЂРёРіР°РґРёСЂР° (РјР°СЃС‚РµСЂР° СѓС‡Р°СЃС‚РєР°) РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getBrigadierSurname(string num)
         {
@@ -188,7 +194,7 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает бригадира для текущего пользователя
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ Р±СЂРёРіР°РґРёСЂР° РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
         /// </summary>
         /// <returns></returns>
         public static string getBrigadierSurnameSettings()
@@ -203,9 +209,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает дату (оформления) заказа по его номеру
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РґР°С‚Сѓ (РѕС„РѕСЂРјР»РµРЅРёСЏ) Р·Р°РєР°Р·Р° РїРѕ РµРіРѕ РЅРѕРјРµСЂСѓ
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static DateTime getCreationDate(string num)
         {
@@ -216,9 +222,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает фамилию оформляющего по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ РѕС„РѕСЂРјР»СЏСЋС‰РµРіРѕ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getCreatorSurname(string num)
         {
@@ -229,7 +235,7 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает должность заказчика по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РґРѕР»Р¶РЅРѕСЃС‚СЊ Р·Р°РєР°Р·С‡РёРєР° РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
@@ -242,9 +248,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возращает фамилию заказчика по номер листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·СЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ Р·Р°РєР°Р·С‡РёРєР° РїРѕ РЅРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getCustomerSurname(string num)
         {
@@ -255,19 +261,19 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает дату востребования сборки по номеру заказа
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РґР°С‚Сѓ РІРѕСЃС‚СЂРµР±РѕРІР°РЅРёСЏ СЃР±РѕСЂРєРё РїРѕ РЅРѕРјРµСЂСѓ Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static DateTime getDemandDate(string orderNum)
         {
-            return SQLOracle.selectDate("select DEMAND_DATE" + _table + _where + orderNum + "'");
+            return SQLOracle.selectDate("select DEMAND_DATE" + Table + Where + orderNum + "'");
         }
 
         /// <summary>
-        /// Метод возвращает id тз
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ id С‚Р·
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getTZId(string num)
         {
@@ -278,9 +284,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает количество сборок в году до заданного месяца
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР±РѕСЂРѕРє РІ РіРѕРґСѓ РґРѕ Р·Р°РґР°РЅРЅРѕРіРѕ РјРµСЃСЏС†Р°
         /// </summary>
-        /// <param name="date">Дата: используется год и месяц</param>
+        /// <param name="date">Р”Р°С‚Р°: РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РіРѕРґ Рё РјРµСЃСЏС†</param>
         /// <returns></returns>
         public static int getNAssesInYear(DateTime date)
         {
@@ -290,9 +296,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает кол-во ТЗ в ВПП
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»-РІРѕ РўР— РІ Р’РџРџ
         /// </summary>
-        /// <param name="VPPNum">Номер ВПП</param>
+        /// <param name="VPPNum">РќРѕРјРµСЂ Р’РџРџ</param>
         /// <returns></returns>
         public static int getNTZs(string VPPNum)
         {
@@ -304,37 +310,37 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает количество обрабатываемых деталей по номеру заказа
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјС‹С… РґРµС‚Р°Р»РµР№ РїРѕ РЅРѕРјРµСЂСѓ Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getPartsCount(string orderNum)
         {
-            return SQLOracle.selectInt("select PARTS_COUNT" + _table + _where + orderNum + "'");
+            return SQLOracle.selectInt("select PARTS_COUNT" + Table + Where + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает наименование детали по номеру заказа
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ РґРµС‚Р°Р»Рё РїРѕ РЅРѕРјРµСЂСѓ Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getPartName(string orderNum)
         {
-            return SQLOracle.selectStr("select PART_NAME" + _table + _where + orderNum + "'");
+            return SQLOracle.selectStr("select PART_NAME" + Table + Where + orderNum + "'");
         }
 
         /// <summary>
-        /// Метод, возвращающий обозначение обрабатываемой детали по номеру листа заказа
+        /// РњРµС‚РѕРґ, РІРѕР·РІСЂР°С‰Р°СЋС‰РёР№ РѕР±РѕР·РЅР°С‡РµРЅРёРµ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјРѕР№ РґРµС‚Р°Р»Рё РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getPartTitle(string orderNum)
         {
-            string result = SQLOracle.selectStr("select OB_D from VPP_POZ20 where N_VD = (select VPP_NUM" + _table + _where + orderNum + "')");
+            string result = SQLOracle.selectStr("select OB_D from VPP_POZ20 where N_VD = (select VPP_NUM" + Table + Where + orderNum + "')");
             return result;
         }
         /// <summary>
-        /// Метод, возвращающий обозначение обрабатываемой детали
+        /// РњРµС‚РѕРґ, РІРѕР·РІСЂР°С‰Р°СЋС‰РёР№ РѕР±РѕР·РЅР°С‡РµРЅРёРµ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјРѕР№ РґРµС‚Р°Р»Рё
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -348,9 +354,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает плановую дату изготовления УСПО
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РїР»Р°РЅРѕРІСѓСЋ РґР°С‚Сѓ РёР·РіРѕС‚РѕРІР»РµРЅРёСЏ РЈРЎРџРћ
         /// </summary>
-        /// <param name="id">Id ТЗ без проектирования</param>
+        /// <param name="id">Id РўР— Р±РµР· РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёСЏ</param>
         /// <returns></returns>
         public static DateTime getPlanProductionDate_TZnumber(string id)
         {
@@ -360,22 +366,22 @@ using System.Windows.Forms;
             return SQLOracle.selectDate("select DATA_ISP from USP_TZ_DATA where ID_DOC = :ID", D);
         }
         /// <summary>
-        /// Возвращает плановую дату изготовления УСПО
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РїР»Р°РЅРѕРІСѓСЋ РґР°С‚Сѓ РёР·РіРѕС‚РѕРІР»РµРЅРёСЏ РЈРЎРџРћ
         /// </summary>
-        /// <param name="VPPnumber">Номер ВПП/ВЗД</param>
+        /// <param name="VPPnumber">РќРѕРјРµСЂ Р’РџРџ/Р’Р—Р”</param>
         /// <returns></returns>
         public static DateTime getPlanProductionDate_VPPnumber(string VPPnumber)
         {
             Dictionary<string, string> D = new Dictionary<string, string>();
             D.Add("VPP_NUM", VPPnumber);
 
-            return SQLOracle.selectDate("select DT_I from " + _VPPtable + " where N_VD = :VPP_NUM", D);
+            return SQLOracle.selectDate("select DT_I from " + VppTable + " where N_VD = :VPP_NUM", D);
         }
 
         /// <summary>
-        /// Метод возвращает код изделия по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕРґ РёР·РґРµР»РёСЏ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getProductCode(string num)
         {
@@ -385,9 +391,9 @@ using System.Windows.Forms;
             return SQLOracle.selectInt("select KI from VPP_POZ20 where N_VD = (select VPP_NUM from USP_ASSEMBLY_ORDERS where NUM = :NUM)", Dict);
         }
         /// <summary>
-        /// Метод возвращает код изделия
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕРґ РёР·РґРµР»РёСЏ
         /// </summary>
-        /// <param name="id">ID ТЗ</param>
+        /// <param name="id">ID РўР—</param>
         /// <returns></returns>
         public static string getProductCode_TZ(string id)
         {
@@ -398,9 +404,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает номер участка сборки УСПО по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ СѓС‡Р°СЃС‚РєР° СЃР±РѕСЂРєРё РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getSectorNum(string num)
         {
@@ -411,7 +417,7 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает номер участка для текущего пользователя
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ СѓС‡Р°СЃС‚РєР° РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
         /// </summary>
         /// <returns></returns>
         public static string getSectorNumSettings()
@@ -426,58 +432,58 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает дополнительные технические условия
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ С‚РµС…РЅРёС‡РµСЃРєРёРµ СѓСЃР»РѕРІРёСЏ
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getTechConditions(string orderNum)
         {
-            return SQLOracle.selectStr("select TECH_CONDITIONS" + _endQuery + orderNum + "'");
+            return SQLOracle.selectStr("select TECH_CONDITIONS" + EndQuery + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает должность автора дополнительных технических условий
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РґРѕР»Р¶РЅРѕСЃС‚СЊ Р°РІС‚РѕСЂР° РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… С‚РµС…РЅРёС‡РµСЃРєРёС… СѓСЃР»РѕРІРёР№
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getTechConditionsPosition(string orderNum)
         {
-            return SQLOracle.selectStr("select TECH_CONDITIONS_POSITION" + _endQuery + orderNum + "'");
+            return SQLOracle.selectStr("select TECH_CONDITIONS_POSITION" + EndQuery + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает фамилию автора дополнительных технических условий
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ С„Р°РјРёР»РёСЋ Р°РІС‚РѕСЂР° РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… С‚РµС…РЅРёС‡РµСЃРєРёС… СѓСЃР»РѕРІРёР№
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getTechConditionsSurname(string orderNum)
         {
-            return SQLOracle.selectStr("select TECH_CONDITIONS_SURNAME" + _endQuery + orderNum + "'");
+            return SQLOracle.selectStr("select TECH_CONDITIONS_SURNAME" + EndQuery + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает наименование технологической операции
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ С‚РµС…РЅРѕР»РѕРіРёС‡РµСЃРєРѕР№ РѕРїРµСЂР°С†РёРё
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getTechOperationName(string orderNum)
         {
-            return SQLOracle.selectStr("select TECH_OPERATION_NAME" + _table + _where + orderNum + "'");
+            return SQLOracle.selectStr("select TECH_OPERATION_NAME" + Table + Where + orderNum + "'");
         }
 
         /// <summary>
-        /// Возвращает номер технического задания по номеру заказа
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ С‚РµС…РЅРёС‡РµСЃРєРѕРіРѕ Р·Р°РґР°РЅРёСЏ РїРѕ РЅРѕРјРµСЂСѓ Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getTZnumber(string orderNum)
         {
-            return SQLOracle.selectStr("select TZ_NUM" + _table + _where + orderNum + "'");
+            return SQLOracle.selectStr("select TZ_NUM" + Table + Where + orderNum + "'");
         }
         /// <summary>
-        /// Возвращает номер технического задания
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ С‚РµС…РЅРёС‡РµСЃРєРѕРіРѕ Р·Р°РґР°РЅРёСЏ
         /// </summary>
-        /// <param name="idDoc">ID ТЗ</param>
+        /// <param name="idDoc">ID РўР—</param>
         /// <returns></returns>
         public static string getTZnum(string idDoc)
         {
@@ -488,9 +494,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает позицию ТЗ
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕР·РёС†РёСЋ РўР—
         /// </summary>
-        /// <param name="orderNum">Номер заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getTZpos(string orderNum)
         {
@@ -501,9 +507,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает идентификатор ВПП
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р’РџРџ
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getVPPId(string num)
         {
@@ -513,22 +519,22 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Возвращает номер ВПП по номеру листа заказа
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ Р’РџРџ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static string getVPPnumber(string orderNum)
         {
             Dictionary<string, string> Dict = new Dictionary<string, string>();
             Dict.Add("NUM", orderNum);
 
-            return SQLOracle.selectStr("select VPP_NUM" + _table + " where NUM = :NUM", Dict);
+            return SQLOracle.selectStr("select VPP_NUM" + Table + " where NUM = :NUM", Dict);
         }
 
         /// <summary>
-        /// Метод возвращает код цеха заказчика по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕРґ С†РµС…Р° Р·Р°РєР°Р·С‡РёРєР° РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getWorkshopCode(string num)
         {
@@ -545,9 +551,9 @@ using System.Windows.Forms;
             return SQLOracle.selectInt("select distinct CE from VPP_TZ20 where N_VD = :VPP_NUM");
         }
         /// <summary>
-        /// Метод возвращает код цеха заказчика по id ТЗ
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕРґ С†РµС…Р° Р·Р°РєР°Р·С‡РёРєР° РїРѕ id РўР—
         /// </summary>
-        /// <param name="idDoc">id ТЗ</param>
+        /// <param name="idDoc">id РўР—</param>
         /// <returns></returns>
         public static string getWorkshopCode_TZ(string idDoc)
         {
@@ -559,10 +565,10 @@ using System.Windows.Forms;
 
         //------------------
         /// <summary>
-        /// Метод возвращает кол-во элементов в сборке
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ СЃР±РѕСЂРєРµ
         /// </summary>
         /// <param name="num">
-        /// Номер заказа
+        /// РќРѕРјРµСЂ Р·Р°РєР°Р·Р°
         /// </param>
         public static int getElementsCount(string num)
         {
@@ -573,9 +579,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает количество прихватов и планок в УСПО по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРёС…РІР°С‚РѕРІ Рё РїР»Р°РЅРѕРє РІ РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getStrapsCount(string num)
         {
@@ -586,9 +592,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает количество болтов с гайками в УСПО по номеру листа заказа
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ Р±РѕР»С‚РѕРІ СЃ РіР°Р№РєР°РјРё РІ РЈРЎРџРћ РїРѕ РЅРѕРјРµСЂСѓ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getNutsCount(string num)
         {
@@ -599,9 +605,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает количество специальных шпонок
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРїРµС†РёР°Р»СЊРЅС‹С… С€РїРѕРЅРѕРє
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getSpecialDowelsCount(string num)
         {
@@ -612,9 +618,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает количество специальных деталей
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРїРµС†РёР°Р»СЊРЅС‹С… РґРµС‚Р°Р»РµР№
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getSpecialElementsCount(string num)
         {
@@ -625,9 +631,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает количество рассчитанных и выверенных размеров
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂР°СЃСЃС‡РёС‚Р°РЅРЅС‹С… Рё РІС‹РІРµСЂРµРЅРЅС‹С… СЂР°Р·РјРµСЂРѕРІ
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getDimensionsCount(string num)
         {
@@ -638,9 +644,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает группу сложности сборки УСПО
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ РіСЂСѓРїРїСѓ СЃР»РѕР¶РЅРѕСЃС‚Рё СЃР±РѕСЂРєРё РЈРЎРџРћ
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static int getDifficultyGroup(string num)
         {
@@ -653,9 +659,9 @@ using System.Windows.Forms;
 
         //------------------------------------------
         /// <summary>
-        /// Метод возвращает true, если заказ основан на ВПП с проектированием
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё Р·Р°РєР°Р· РѕСЃРЅРѕРІР°РЅ РЅР° Р’РџРџ СЃ РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµРј
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static bool isProject(string num)
         {
@@ -674,9 +680,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает true, если заказ основан на ТЗ без ВПП
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё Р·Р°РєР°Р· РѕСЃРЅРѕРІР°РЅ РЅР° РўР— Р±РµР· Р’РџРџ
         /// </summary>
-        /// <param name="num">Номер листа заказа</param>
+        /// <param name="num">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         /// <returns></returns>
         public static bool isTZ(string num)
         {
@@ -697,9 +703,9 @@ using System.Windows.Forms;
         //------------------ DATASETS ---------------------------
 
         /// <summary>
-        /// Метод, возвращающий данные по собранным сборкам за конкретный месяц
+        /// РњРµС‚РѕРґ, РІРѕР·РІСЂР°С‰Р°СЋС‰РёР№ РґР°РЅРЅС‹Рµ РїРѕ СЃРѕР±СЂР°РЅРЅС‹Рј СЃР±РѕСЂРєР°Рј Р·Р° РєРѕРЅРєСЂРµС‚РЅС‹Р№ РјРµСЃСЏС†
         /// </summary>
-        /// <param name="date">Дата, месяц которой будет условием выборки</param>
+        /// <param name="date">Р”Р°С‚Р°, РјРµСЃСЏС† РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ СѓСЃР»РѕРІРёРµРј РІС‹Р±РѕСЂРєРё</param>
         /// <returns></returns>
         public static DataSet getAssembliesInfo(DateTime date)
         {
@@ -720,7 +726,7 @@ using System.Windows.Forms;
             parametrs += ", PART_NAME";
             parametrs += ", EQUIP_TITLE";
             parametrs += ", ASSEMBLY_ELEMENTS_COUNT";
-            parametrs += ", NULL"; //РАЗМЕР ПАЗА
+            parametrs += ", NULL"; //Р РђР—РњР•Р  РџРђР—Рђ
             parametrs += ", ASSEMBLY_DIFFICULTY_GROUP";
 
             string cmdQuery = "select " + parametrs + " from USP_ASSEMBLY_ORDERS" +
@@ -735,9 +741,9 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод возвращает листы заказа с определенным статусом
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ Р»РёСЃС‚С‹ Р·Р°РєР°Р·Р° СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј СЃС‚Р°С‚СѓСЃРѕРј
         /// </summary>
-        /// <param name="status">Статус заказа: 1 - оформлен, 2 - сборка создана, 3 - сборка выдана заказчику, 4 - сборка принята обратно в цех УСПО </param>
+        /// <param name="status">РЎС‚Р°С‚СѓСЃ Р·Р°РєР°Р·Р°: 1 - РѕС„РѕСЂРјР»РµРЅ, 2 - СЃР±РѕСЂРєР° СЃРѕР·РґР°РЅР°, 3 - СЃР±РѕСЂРєР° РІС‹РґР°РЅР° Р·Р°РєР°Р·С‡РёРєСѓ, 4 - СЃР±РѕСЂРєР° РїСЂРёРЅСЏС‚Р° РѕР±СЂР°С‚РЅРѕ РІ С†РµС… РЈРЎРџРћ </param>
         /// <returns></returns>
         public static DataTable getOrders(int status)
         {
@@ -747,42 +753,95 @@ using System.Windows.Forms;
             return SQLOracle.getDT("select NUM, VPP_NUM, TZ_NUM, PART_NAME from USP_ASSEMBLY_ORDERS where DOC_STATUS = :STATUS", Dict);
         }
         /// <summary>
-        /// Метод возвращает листы заказа с определенным статусом в заданном временном интервале
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ Р»РёСЃС‚С‹ Р·Р°РєР°Р·Р° СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј СЃС‚Р°С‚СѓСЃРѕРј РІ Р·Р°РґР°РЅРЅРѕРј РІСЂРµРјРµРЅРЅРѕРј РёРЅС‚РµСЂРІР°Р»Рµ
         /// </summary>
-        /// <param name="status">Статус заказа: 1 - оформлен, 2 - сборка создана, 3 - сборка выдана заказчику, 4 - сборка принята обратно в цех УСПО </param>
-        /// <param name="fromDate">Дата начала временного промежутка</param>
-        /// <param name="toDate">Дата конца временного промежутка</param>
-        /// <param name="columnName">Наименование столбца для фильтрации по времени</param>
+        /// <param name="status">РЎС‚Р°С‚СѓСЃ Р·Р°РєР°Р·Р°: 1 - РѕС„РѕСЂРјР»РµРЅ, 2 - СЃР±РѕСЂРєР° СЃРѕР·РґР°РЅР°, 3 - СЃР±РѕСЂРєР° РІС‹РґР°РЅР° Р·Р°РєР°Р·С‡РёРєСѓ, 4 - СЃР±РѕСЂРєР° РїСЂРёРЅСЏС‚Р° РѕР±СЂР°С‚РЅРѕ РІ С†РµС… РЈРЎРџРћ </param>
+        /// <param name="fromDate">Р”Р°С‚Р° РЅР°С‡Р°Р»Р° РІСЂРµРјРµРЅРЅРѕРіРѕ РїСЂРѕРјРµР¶СѓС‚РєР°</param>
+        /// <param name="toDate">Р”Р°С‚Р° РєРѕРЅС†Р° РІСЂРµРјРµРЅРЅРѕРіРѕ РїСЂРѕРјРµР¶СѓС‚РєР°</param>
+        /// <param name="columnName">РќР°РёРјРµРЅРѕРІР°РЅРёРµ СЃС‚РѕР»Р±С†Р° РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё РїРѕ РІСЂРµРјРµРЅРё</param>
         /// <returns></returns>
-        public static DataTable getOrders(int status, DateTime fromDate, DateTime toDate, string columnName)
+        public static DataTable GetOrders(int status, DateTime fromDate, DateTime toDate, string columnName)
         {
-            Dictionary<string, string> Dict = new Dictionary<string, string>();
-            Dict.Add("STATUS", status.ToString());
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("STATUS", status.ToString());
 
-            DateTime fD = DateTime.Today;
-            fD = fromDate.Date;
-            Dict.Add("FROM_DATE", fD.ToString());
+            DateTime fD = fromDate.Date;
+            dict.Add("FROM_DATE", fD.ToString());
 
             DateTime tomorrow = toDate.Date.AddDays(1);
-            Dict.Add("TO_DATE", tomorrow.ToString());
+            dict.Add("TO_DATE", tomorrow.ToString());
 
-            string cmdQuery = "select NUM, VPP_NUM, TZ_NUM, PART_TITLE, WORKSHOP_CODE, TECHNOLOG, " + columnName + " from USP_ASSEMBLY_ORDERS where DOC_STATUS = :STATUS and " + columnName + " >= to_date(:FROM_DATE,'dd.mm.yyyy hh24:mi:ss') and " + columnName + " < to_date(:TO_DATE,'dd.mm.yyyy hh24:mi:ss')";
+            string cmdQuery = "select NUM, " +
+                                     "VPP_NUM, " +
+                                     "TZ_NUM, " +
+                                     "PART_TITLE, " +
+                                     "WORKSHOP_CODE, " +
+                                     "TECHNOLOG, " + columnName + 
+                              " from USP_ASSEMBLY_ORDERS " +
+                              "where DOC_STATUS = :STATUS and " + 
+                                     columnName + " >= to_date(:FROM_DATE,'dd.mm.yyyy hh24:mi:ss') and " + 
+                                     columnName + " < to_date(:TO_DATE,'dd.mm.yyyy hh24:mi:ss')";
             
-            DataTable DT = SQLOracle.getDT(cmdQuery, Dict);
-            DT.Columns[0].ColumnName = "Номер";
-            DT.Columns[1].ColumnName = "Номер ВПП";
-            DT.Columns[2].ColumnName = "Номер ТЗ";
-            DT.Columns[3].ColumnName = "Обозначение детали";
-            DT.Columns[4].ColumnName = "Цех заказчик";
-            DT.Columns[5].ColumnName = "Владелец";
+            DataTable dt = SQLOracle.getDT(cmdQuery, dict);
+            dt.Columns[0].ColumnName = "РќРѕРјРµСЂ";
+            dt.Columns[1].ColumnName = "РќРѕРјРµСЂ Р’РџРџ";
+            dt.Columns[2].ColumnName = "РќРѕРјРµСЂ РўР—";
+            dt.Columns[3].ColumnName = "РћР±РѕР·РЅР°С‡РµРЅРёРµ РґРµС‚Р°Р»Рё";
+            dt.Columns[4].ColumnName = "Р¦РµС… Р·Р°РєР°Р·С‡РёРє";
+            dt.Columns[5].ColumnName = "Р’Р»Р°РґРµР»РµС†";
 
-            return DT;
+            return dt;
         }
 
         /// <summary>
-        /// Метод удаляет лист заказа вместе с горячей статистикой
+        /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ Р·Р°РІРµСЂС€С‘РЅРЅС‹Рј Р»РёСЃС‚Р°Рј Р·Р°РєР°Р·Р° РІ РІС‹Р±СЂР°РЅРЅРѕРј РІСЂРµРјРµРЅРЅРѕРј РґРёР°РїР°Р·РѕРЅРµ
+        /// РІРѕР·РІСЂР°С‰РµРЅРёСЏ СЃР±РѕСЂРєРё.
         /// </summary>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="fromDate">РќР°С‡Р°Р»Рѕ РІСЂРµРјРµРЅРЅРѕРіРѕ РїСЂРѕРјРµР¶СѓС‚РєР°.</param>
+        /// <param name="toDate">РљРѕРЅРµС† РІСЂРµРјРµРЅРЅРѕРіРѕ РїСЂРѕРјРµР¶СѓС‚РєР°.</param>
+        /// <returns></returns>
+        public static DataTable GetCompletedOrders(DateTime fromDate, DateTime toDate)
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+
+            DateTime fD = fromDate.Date;
+            dict.Add("FROM_DATE", fD.ToString());
+
+            DateTime tomorrow = toDate.Date.AddDays(1);
+            dict.Add("TO_DATE", tomorrow.ToString());
+
+            string cmdQuery = "select NUM, " +
+                              "VPP_NUM, " +
+                              "TZ_NUM, " +
+                              "CREATION_DATE, " +
+                              "ASSEMBLY_RETURN_DATE, " + 
+                              "PART_TITLE, " +
+                              "WORKSHOP_CODE, " +
+                              "TECHNOLOG " +
+                              "from USP_ASSEMBLY_ORDERS " +
+                              "where DOC_STATUS = " + (int)Status.AssReturned + " and " +
+                                  "ASSEMBLY_RETURN_DATE >= " +
+                                        "to_date(:FROM_DATE,'dd.mm.yyyy hh24:mi:ss') and " +
+                                  "ASSEMBLY_RETURN_DATE < " +
+                                        "to_date(:TO_DATE,'dd.mm.yyyy hh24:mi:ss')";
+
+            DataTable dt = SQLOracle.getDT(cmdQuery, dict);
+            dt.Columns[0].ColumnName = "РќРѕРјРµСЂ";
+            dt.Columns[1].ColumnName = "РќРѕРјРµСЂ Р’РџРџ";
+            dt.Columns[2].ColumnName = "РќРѕРјРµСЂ РўР—";
+            dt.Columns[3].ColumnName = "Р”Р°С‚Р° СЃРѕР·РґР°РЅРёСЏ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°";
+            dt.Columns[4].ColumnName = "Р”Р°С‚Р° РІРѕР·РІСЂР°С‚Р° СЃР±РѕСЂРєРё";
+            dt.Columns[5].ColumnName = "РћР±РѕР·РЅР°С‡РµРЅРёРµ РґРµС‚Р°Р»Рё";
+            dt.Columns[6].ColumnName = "Р¦РµС… Р·Р°РєР°Р·С‡РёРє";
+            dt.Columns[7].ColumnName = "Р’Р»Р°РґРµР»РµС†";
+
+            return dt;
+        }
+
+        /// <summary>
+        /// РњРµС‚РѕРґ СѓРґР°Р»СЏРµС‚ Р»РёСЃС‚ Р·Р°РєР°Р·Р° РІРјРµСЃС‚Рµ СЃ РіРѕСЂСЏС‡РµР№ СЃС‚Р°С‚РёСЃС‚РёРєРѕР№
+        /// </summary>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         public static void deleteOrder(string orderNum)
         {
             Dictionary<string, string> Dict = new Dictionary<string, string>();
@@ -791,7 +850,7 @@ using System.Windows.Forms;
             SQLOracle.delete("delete from USP_HOT_STATS where ORDER_NUM = :ORDER_NUM", Dict);
             Dict.Clear();
 
-            if (!_ASSEMBLY_ORDERS.isProject(orderNum))
+            if (!AssemblyOrders.isProject(orderNum))
             {
                 int id = _ASSEMBLIES.getId_OrderNum(orderNum);
                 Dict.Add("ID", id.ToString());
@@ -818,15 +877,15 @@ using System.Windows.Forms;
         }
 
         /// <summary>
-        /// Метод откатывает лист заказа на необходимую позицию
+        /// РњРµС‚РѕРґ РѕС‚РєР°С‚С‹РІР°РµС‚ Р»РёСЃС‚ Р·Р°РєР°Р·Р° РЅР° РЅРµРѕР±С…РѕРґРёРјСѓСЋ РїРѕР·РёС†РёСЋ
         /// </summary>
-        /// <param name="status">Статус листа заказа: 1 - оформлен, 2 - сборка создана, 3 - сборка передана заказчику</param>
-        /// <param name="orderNum">Номер листа заказа</param>
+        /// <param name="status">РЎС‚Р°С‚СѓСЃ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°: 1 - РѕС„РѕСЂРјР»РµРЅ, 2 - СЃР±РѕСЂРєР° СЃРѕР·РґР°РЅР°, 3 - СЃР±РѕСЂРєР° РїРµСЂРµРґР°РЅР° Р·Р°РєР°Р·С‡РёРєСѓ</param>
+        /// <param name="orderNum">РќРѕРјРµСЂ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°</param>
         public static void setStatus(int status, string orderNum)
         {
             Dictionary<string, string> Dict = new Dictionary<string, string>();
             Dict.Add("NUM", orderNum);
-            int assId = _ASSEMBLY_ORDERS.getAssId(orderNum);
+            int assId = AssemblyOrders.getAssId(orderNum);
             Dictionary<string, string> ParamsDict = new Dictionary<string, string>();
 
             string cmdUpdate = "update USP_ASSEMBLY_ORDERS set ";
@@ -834,18 +893,18 @@ using System.Windows.Forms;
             {
                 case 1:
 
-                    //без проектирования
-                    if (!_ASSEMBLY_ORDERS.isProject(orderNum))
+                    //Р±РµР· РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёСЏ
+                    if (!AssemblyOrders.isProject(orderNum))
                     {
-                        //Удаляем сборку
-                        assId = _ASSEMBLY_ORDERS.getAssId(orderNum);
+                        //РЈРґР°Р»СЏРµРј СЃР±РѕСЂРєСѓ
+                        assId = AssemblyOrders.getAssId(orderNum);
                         ParamsDict.Add("ID", assId.ToString());
                         SQLOracle.delete("delete from USP_ASSEMBLIES where ID = :ID", ParamsDict);
 
-                        //Удаляем элементы сборок
+                        //РЈРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚С‹ СЃР±РѕСЂРѕРє
                         SQLOracle.delete("delete from USP_ASSEMBLY_ELEMENTS where ASSEMBLY_ID = :ID", ParamsDict);
 
-                        //Удаляем горячую статистику
+                        //РЈРґР°Р»СЏРµРј РіРѕСЂСЏС‡СѓСЋ СЃС‚Р°С‚РёСЃС‚РёРєСѓ
                         ParamsDict.Clear();
                         ParamsDict.Add("NUM", orderNum);
                         SQLOracle.delete("delete from USP_HOT_STATS where ORDER_NUM = :NUM", ParamsDict);
@@ -860,7 +919,7 @@ using System.Windows.Forms;
 
                     if (isTZ(orderNum))
                     {
-                        string TZId = _ASSEMBLY_ORDERS.getTZId(orderNum);
+                        string TZId = AssemblyOrders.getTZId(orderNum);
 
                         Dictionary<string, string> PDict = new Dictionary<string, string>();
                         PDict.Add("TZ_ID", TZId);
@@ -879,10 +938,10 @@ using System.Windows.Forms;
                 case 3:
                     cmdUpdate += "DOC_STATUS = 3, ASSEMBLY_RETURN_GIVER_SURNAME = NULL, ASSEMBLY_RETURN_GETER_SURNAME = NULL, ASSEMBLY_RETURN_DATE = NULL";
 
-                    //Вставляем горячую статистику
+                    //Р’СЃС‚Р°РІР»СЏРµРј РіРѕСЂСЏС‡СѓСЋ СЃС‚Р°С‚РёСЃС‚РёРєСѓ
 
                     ParamsDict.Clear();
-                    assId = _ASSEMBLY_ORDERS.getAssId(orderNum);
+                    assId = AssemblyOrders.getAssId(orderNum);
                     Dictionary<string, string> ElementsDict = _ASSEMBLIES.getElements(assId);
                     string cmdInsert = "insert into USP_HOT_STATS (ORDER_NUM, ELEMENT_TITLE, ELEMENTS_COUNT) values (:ORDER_NUM, :ELEMENT_TITLE, :ELEMENTS_COUNT)";
 

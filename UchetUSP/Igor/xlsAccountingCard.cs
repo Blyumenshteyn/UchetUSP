@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+п»їusing System;
 using System.Data;
 
 namespace UchetUSP
 {
     /// <summary>
-    /// Класс, создающий, генерирующий и отправляющий на печать карту учета сборок УСП
+    /// РљР»Р°СЃСЃ, СЃРѕР·РґР°СЋС‰РёР№, РіРµРЅРµСЂРёСЂСѓСЋС‰РёР№ Рё РѕС‚РїСЂР°РІР»СЏСЋС‰РёР№ РЅР° РїРµС‡Р°С‚СЊ РєР°СЂС‚Сѓ СѓС‡РµС‚Р° СЃР±РѕСЂРѕРє РЈРЎРџ
     /// </summary>
     class xlsAccountingCard : ExcelClass, IDisposable
     {
@@ -24,15 +22,15 @@ namespace UchetUSP
         void createHeader()
         {
             WriteDataToCell("AP4", _necessaryDate.ToShortDateString());
-            WriteDataToCell("BC4", _ASSEMBLY_ORDERS.getBrigadierSurnameSettings());
+            WriteDataToCell("BC4", AssemblyOrders.getBrigadierSurnameSettings());
         }
         void createDataSet()
         {
-            _DS = _ASSEMBLY_ORDERS.getAssembliesInfo(_necessaryDate);
+            _DS = AssemblyOrders.getAssembliesInfo(_necessaryDate);
         }
 
         /// <summary>
-        /// Метод, создающий новый документ
+        /// РњРµС‚РѕРґ, СЃРѕР·РґР°СЋС‰РёР№ РЅРѕРІС‹Р№ РґРѕРєСѓРјРµРЅС‚
         /// </summary>
         public void createDocument()
         {
@@ -59,7 +57,7 @@ namespace UchetUSP
             int colCount = _DS.Tables[0].Columns.Count;
             int rowCount = _DS.Tables[0].Rows.Count;
 
-            int nAsses = _ASSEMBLY_ORDERS.getNAssesInYear(_necessaryDate);
+            int nAsses = AssemblyOrders.getNAssesInYear(_necessaryDate);
             int xlsRow = 14;
             for (int i = 0; i < rowCount; i++)
             {

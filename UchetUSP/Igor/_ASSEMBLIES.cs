@@ -82,8 +82,8 @@ class _ASSEMBLIES
     public static string getAssemblyTitle_orderNum(string orderNum)
     {
         Dictionary<string, string> Dict = new Dictionary<string, string>();
-        string VPPNum = _ASSEMBLY_ORDERS.getVPPnumber(orderNum);
-        int pos = _ASSEMBLY_ORDERS.getTZpos(orderNum);
+        string VPPNum = AssemblyOrders.getVPPnumber(orderNum);
+        int pos = AssemblyOrders.getTZpos(orderNum);
 
         return getAssemblyTitle(VPPNum, pos);
     }

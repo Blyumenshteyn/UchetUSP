@@ -28,7 +28,7 @@ namespace UchetUSP
                 getProperties();
                 fillDocument();
                 Dictionary<string, string> DictElements = new Dictionary<string, string>();
-                DictElements = _ASSEMBLY_ELEMENTS.getElementsDict(_ASSEMBLY_ORDERS.getAssId(_orderNum));
+                DictElements = _ASSEMBLY_ELEMENTS.getElementsDict(AssemblyOrders.getAssId(_orderNum));
                 _fillElements(DictElements);
 
                 this.Visible = true;
@@ -39,128 +39,128 @@ namespace UchetUSP
         void getProperties()
         {
             _D.Add("NUM", _orderNum);
-            _D.Add("CREATION_DATE", _ASSEMBLY_ORDERS.getCreationDate(_orderNum).ToShortDateString());
-            _D.Add("DEMAND_DATE", _ASSEMBLY_ORDERS.getDemandDate(_orderNum).ToShortDateString());
-            _D.Add("TZ_NUM", _ASSEMBLY_ORDERS.getTZnumber(_orderNum));
+            _D.Add("CREATION_DATE", AssemblyOrders.getCreationDate(_orderNum).ToShortDateString());
+            _D.Add("DEMAND_DATE", AssemblyOrders.getDemandDate(_orderNum).ToShortDateString());
+            _D.Add("TZ_NUM", AssemblyOrders.getTZnumber(_orderNum));
 
-            int wSCode = _ASSEMBLY_ORDERS.getWorkshopCode(_orderNum);
+            int wSCode = AssemblyOrders.getWorkshopCode(_orderNum);
             if (wSCode != 0)
             {
                 _D.Add("WORKSHOP_CODE", wSCode.ToString());
             }
 
-            if (_ASSEMBLY_ORDERS.isTZ(_orderNum))
+            if (AssemblyOrders.isTZ(_orderNum))
             {
-                string idDoc = _ASSEMBLY_ORDERS.getTZId(_orderNum);
-                string productCode = _ASSEMBLY_ORDERS.getProductCode_TZ(idDoc);
+                string idDoc = AssemblyOrders.getTZId(_orderNum);
+                string productCode = AssemblyOrders.getProductCode_TZ(idDoc);
                 if (productCode != "0")
                 {
                     _D.Add("PRODUCT_CODE", productCode);
                 }
-                _D.Add("PART_TITLE", _ASSEMBLY_ORDERS.getPartTitle_TZ(idDoc));
+                _D.Add("PART_TITLE", AssemblyOrders.getPartTitle_TZ(idDoc));
             }
             else
             {
-                _D.Add("PRODUCT_CODE", _ASSEMBLY_ORDERS.getProductCode(_orderNum).ToString());
-                _D.Add("PART_TITLE", _ASSEMBLY_ORDERS.getPartTitle(_orderNum));
+                _D.Add("PRODUCT_CODE", AssemblyOrders.getProductCode(_orderNum).ToString());
+                _D.Add("PART_TITLE", AssemblyOrders.getPartTitle(_orderNum));
             }
             
-            _D.Add("PART_NAME", _ASSEMBLY_ORDERS.getPartName(_orderNum));
+            _D.Add("PART_NAME", AssemblyOrders.getPartName(_orderNum));
             
-            _D.Add("TECH_OPERATION_NAME", _ASSEMBLY_ORDERS.getTechOperationName(_orderNum));
-            _D.Add("PARTS_COUNT", _ASSEMBLY_ORDERS.getPartsCount(_orderNum).ToString());
-            _D.Add("CUSTOMER_POSITION", _ASSEMBLY_ORDERS.getCustomerPosition(_orderNum));
-            _D.Add("CUSTOMER_SURNAME", _ASSEMBLY_ORDERS.getCustomerSurname(_orderNum));
-            _D.Add("CREATOR_SURNAME", _ASSEMBLY_ORDERS.getCreatorSurname(_orderNum));
+            _D.Add("TECH_OPERATION_NAME", AssemblyOrders.getTechOperationName(_orderNum));
+            _D.Add("PARTS_COUNT", AssemblyOrders.getPartsCount(_orderNum).ToString());
+            _D.Add("CUSTOMER_POSITION", AssemblyOrders.getCustomerPosition(_orderNum));
+            _D.Add("CUSTOMER_SURNAME", AssemblyOrders.getCustomerSurname(_orderNum));
+            _D.Add("CREATOR_SURNAME", AssemblyOrders.getCreatorSurname(_orderNum));
 
-            int assNum = _ASSEMBLY_ORDERS.getAssNum(_orderNum);
+            int assNum = AssemblyOrders.getAssNum(_orderNum);
             if (assNum != 0)
 	        {
                  _D.Add("ASSEMBLY_NUM", assNum.ToString());
 	        }
 
             DateTime nullDate = new DateTime(1, 1, 1);
-            DateTime date = _ASSEMBLY_ORDERS.getAssDeliveryDate(_orderNum);
+            DateTime date = AssemblyOrders.getAssDeliveryDate(_orderNum);
             if (date != nullDate)
             {
                 _D.Add("ASSEMBLY_DELIVERY_DATE", date.ToShortDateString());
             }
 
-            _D.Add("ASSEMBLY_GETER_POSITION", _ASSEMBLY_ORDERS.getAssGeterPosition(_orderNum));
-            _D.Add("ASSEMBLY_GETER_SURNAME", _ASSEMBLY_ORDERS.getAssGeterSurname(_orderNum));
+            _D.Add("ASSEMBLY_GETER_POSITION", AssemblyOrders.getAssGeterPosition(_orderNum));
+            _D.Add("ASSEMBLY_GETER_SURNAME", AssemblyOrders.getAssGeterSurname(_orderNum));
 
-            date = _ASSEMBLY_ORDERS.getAssPlannedReturnDate(_orderNum);
+            date = AssemblyOrders.getAssPlannedReturnDate(_orderNum);
             if (date != nullDate)
             {
                 _D.Add("ASSEMBLY_PLANNED_RETURN_DATE", date.ToShortDateString());
             }
 
-            _D.Add("ASSEMBLY_CREATOR_SURNAME", _ASSEMBLY_ORDERS.getAssCreatorSurname(_orderNum));
-            _D.Add("ASSEMBLY_GIVER_SURNAME", _ASSEMBLY_ORDERS.getAssGiverSurname(_orderNum));
-            _D.Add("TECH_CONDITIONS", _ASSEMBLY_ORDERS.getTechConditions(_orderNum));
-            _D.Add("TECH_CONDITIONS_POSITION", _ASSEMBLY_ORDERS.getTechConditionsPosition(_orderNum));
-            _D.Add("TECH_CONDITIONS_SURNAME", _ASSEMBLY_ORDERS.getTechConditionsSurname(_orderNum));
+            _D.Add("ASSEMBLY_CREATOR_SURNAME", AssemblyOrders.getAssCreatorSurname(_orderNum));
+            _D.Add("ASSEMBLY_GIVER_SURNAME", AssemblyOrders.getAssGiverSurname(_orderNum));
+            _D.Add("TECH_CONDITIONS", AssemblyOrders.getTechConditions(_orderNum));
+            _D.Add("TECH_CONDITIONS_POSITION", AssemblyOrders.getTechConditionsPosition(_orderNum));
+            _D.Add("TECH_CONDITIONS_SURNAME", AssemblyOrders.getTechConditionsSurname(_orderNum));
 
-            date = _ASSEMBLY_ORDERS.getAssCreationDate(_orderNum);
+            date = AssemblyOrders.getAssCreationDate(_orderNum);
             if (date != nullDate)
             {
                 _D.Add("ASSEMBLY_CREATION_DATE", date.ToShortDateString());
             }
 
-            _D.Add("ASSEMBLY_SECTOR_NUM", _ASSEMBLY_ORDERS.getAssSectorNum(_orderNum));
+            _D.Add("ASSEMBLY_SECTOR_NUM", AssemblyOrders.getAssSectorNum(_orderNum));
 
-            date = _ASSEMBLY_ORDERS.getAssReturnDate(_orderNum);
+            date = AssemblyOrders.getAssReturnDate(_orderNum);
             if (date != nullDate)
             {
                 _D.Add("ASSEMBLY_RETURN_DATE", date.ToShortDateString());
             }
 
             setUSPParams();
-            _D.Add("BRIGADIER_SURNAME", _ASSEMBLY_ORDERS.getBrigadierSurname(_orderNum));
+            _D.Add("BRIGADIER_SURNAME", AssemblyOrders.getBrigadierSurname(_orderNum));
 
-            _D.Add("ASSEMBLY_RETURN_GIVER_SURNAME", _ASSEMBLY_ORDERS.getAssReturnGiverSurname(_orderNum).ToString());
-            _D.Add("ASSEMBLY_RETURN_GETER_SURNAME", _ASSEMBLY_ORDERS.getAssReturnGeterSurname(_orderNum).ToString());
+            _D.Add("ASSEMBLY_RETURN_GIVER_SURNAME", AssemblyOrders.getAssReturnGiverSurname(_orderNum).ToString());
+            _D.Add("ASSEMBLY_RETURN_GETER_SURNAME", AssemblyOrders.getAssReturnGeterSurname(_orderNum).ToString());
         }
 
         void setUSPParams()
         {
-            int assElCount = _ASSEMBLY_ORDERS.getElementsCount(_orderNum);
+            int assElCount = AssemblyOrders.getElementsCount(_orderNum);
             if (assElCount != 0)
             {
                 _D.Add("ASSEMBLY_ELEMENTS_COUNT", assElCount.ToString());
             }
 
-            int nStraps = _ASSEMBLY_ORDERS.getStrapsCount(_orderNum);
+            int nStraps = AssemblyOrders.getStrapsCount(_orderNum);
             if (nStraps != 0)
             {
                 _D.Add("ASSEMBLY_STRAPS_COUNT", nStraps.ToString());
             }
 
-            int nNuts = _ASSEMBLY_ORDERS.getNutsCount(_orderNum);
+            int nNuts = AssemblyOrders.getNutsCount(_orderNum);
             if (nNuts != 0)
             {
                 _D.Add("ASSEMBLY_NUTS_COUNT", nNuts.ToString());
             }
 
-            int nSpElem = _ASSEMBLY_ORDERS.getSpecialDowelsCount(_orderNum);
+            int nSpElem = AssemblyOrders.getSpecialDowelsCount(_orderNum);
             if (nSpElem != 0)
             {
                 _D.Add("ASSEMBLY_SPECIAL_DOWELS_COUNT", nSpElem.ToString());
             }
 
-            nSpElem = _ASSEMBLY_ORDERS.getSpecialElementsCount(_orderNum);
+            nSpElem = AssemblyOrders.getSpecialElementsCount(_orderNum);
             if (nSpElem != 0)
             {
                 _D.Add("ASSEMBLY_SPECIAL_ELEME_COUNT", nSpElem.ToString());
             }
 
-            nSpElem = _ASSEMBLY_ORDERS.getDimensionsCount(_orderNum);
+            nSpElem = AssemblyOrders.getDimensionsCount(_orderNum);
             if (nSpElem != 0)
             {
                 _D.Add("ASSEMBLY_DIMENSIONS_COUNT", nSpElem.ToString());
             }
 
-            nSpElem = _ASSEMBLY_ORDERS.getDifficultyGroup(_orderNum);
+            nSpElem = AssemblyOrders.getDifficultyGroup(_orderNum);
             if (nSpElem != 0)
             {
                 _D.Add("ASSEMBLY_DIFFICULTY_GROUP", nSpElem.ToString());

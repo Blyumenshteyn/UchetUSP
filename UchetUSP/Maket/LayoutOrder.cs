@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Text;
@@ -43,13 +43,13 @@ namespace UchetUSP.Layout
         Dictionary<string, string> _Elements;
         bool _assWasEdited = false;
 
-        //Рабочая форма
+        //Р Р°Р±РѕС‡Р°СЏ С„РѕСЂРјР°
         Panel ParentPanel;
 
-        //Рабочая строка статуса
+        //Р Р°Р±РѕС‡Р°СЏ СЃС‚СЂРѕРєР° СЃС‚Р°С‚СѓСЃР°
         System.Windows.Forms.ToolStripStatusLabel ParentToolStripStatusLabel;
 
-        //Инициализация класса с получением рабочей формы
+        //РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєР»Р°СЃСЃР° СЃ РїРѕР»СѓС‡РµРЅРёРµРј СЂР°Р±РѕС‡РµР№ С„РѕСЂРјС‹
         public LayoutOrder(Panel Panel, System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel1)
         {
             ParentPanel = Panel;
@@ -66,7 +66,7 @@ namespace UchetUSP.Layout
 
 
         ///////////////////////////////////////////////////////////////
-        ///////////////////////удаление компонентов формы//////////////
+        ///////////////////////СѓРґР°Р»РµРЅРёРµ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ С„РѕСЂРјС‹//////////////
         ///////////////////////////////////////////////////////////////
 
         protected virtual void Dispose(bool disposing)
@@ -92,7 +92,7 @@ namespace UchetUSP.Layout
                         ParentPanel.Controls.Remove(dGV);
                         dGV.Dispose();
                     }
-                    //кнопки
+                    //РєРЅРѕРїРєРё
                     if (ParentPanel.Controls.Contains(button1))
                     {
                         ParentPanel.Controls.Remove(button1);
@@ -121,7 +121,7 @@ namespace UchetUSP.Layout
                         button4.Dispose();
                     }
 
-                    //лейблы
+                    //Р»РµР№Р±Р»С‹
 
                     if (ParentPanel.Controls.Contains(label1))
                     {
@@ -231,7 +231,7 @@ namespace UchetUSP.Layout
 
                     //ParentPanel.SizeChanged -= new System.EventHandler(ParentPanel_SizeChanged);
 
-                    //принудительно освобождаем память от мусора
+                    //РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РѕСЃРІРѕР±РѕР¶РґР°РµРј РїР°РјСЏС‚СЊ РѕС‚ РјСѓСЃРѕСЂР°
 
                     System.GC.Collect();
 
@@ -251,7 +251,7 @@ namespace UchetUSP.Layout
 
 
         //////////////////////////////////////////////////////////////////////////
-        ////ОСНОВНАЯ ПАНЕЛЬ ВЫВОДА ВПП/ВЗД/ТЗ////////////////////////////////////
+        ////РћРЎРќРћР’РќРђРЇ РџРђРќР•Р›Р¬ Р’Р«Р’РћР”Рђ Р’РџРџ/Р’Р—Р”/РўР—////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////
 
         public void LayoutMainForm()
@@ -279,7 +279,7 @@ namespace UchetUSP.Layout
             panel2 = new System.Windows.Forms.Panel();
             panel3 = new System.Windows.Forms.Panel();
 
-            //фильтр по дате
+            //С„РёР»СЊС‚СЂ РїРѕ РґР°С‚Рµ
             label1 = new Label();
             label2 = new Label();
 
@@ -319,10 +319,10 @@ namespace UchetUSP.Layout
             comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] {
-            "ВСЕ",
-            "ВПП",
-            "ВЗД",
-            "ТЗ (без ВПП)"});
+            "Р’РЎР•",
+            "Р’РџРџ",
+            "Р’Р—Р”",
+            "РўР— (Р±РµР· Р’РџРџ)"});
             comboBox1.Location = new System.Drawing.Point(6, 19);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new System.Drawing.Size(160, 21);
@@ -336,10 +336,10 @@ namespace UchetUSP.Layout
             comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
             comboBox2.Items.AddRange(new object[] {
-            "ВСЕ",
-            "ВПП",
-            "ТЗ",
-            "Спецификация"
+            "Р’РЎР•",
+            "Р’РџРџ",
+            "РўР—",
+            "РЎРїРµС†РёС„РёРєР°С†РёСЏ"
             });
             comboBox2.Location = new System.Drawing.Point(6, 19);
             comboBox2.Name = "comboBox2";
@@ -379,7 +379,7 @@ namespace UchetUSP.Layout
             button3.Name = "button3";
             button3.Size = new System.Drawing.Size(160, 23);
             button3.TabIndex = 6;
-            button3.Text = "Выгрузить модель";
+            button3.Text = "Р’С‹РіСЂСѓР·РёС‚СЊ РјРѕРґРµР»СЊ";
             button3.UseVisualStyleBackColor = true;
             button3.MouseHover += new System.EventHandler(button3_MainForm);
             button3.Click += new System.EventHandler(LoadPartToNX_Click);
@@ -390,7 +390,7 @@ namespace UchetUSP.Layout
             button4.Name = "button4";
             button4.Size = new System.Drawing.Size(160, 23);
             button4.TabIndex = 7;
-            button4.Text = "Поиск";
+            button4.Text = "РџРѕРёСЃРє";
             button4.UseVisualStyleBackColor = true;
             button4.Click += new System.EventHandler(SearchVPP_Click);
             button4.MouseHover += new System.EventHandler(button4_MainForm);
@@ -404,7 +404,7 @@ namespace UchetUSP.Layout
             groupBox1.Size = new System.Drawing.Size(171, 52);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Документация:";
+            groupBox1.Text = "Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ:";
             // 
             // groupBox3
             // 
@@ -416,7 +416,7 @@ namespace UchetUSP.Layout
             groupBox3.Size = new System.Drawing.Size(171, 52);
             groupBox3.TabIndex = 10;
             groupBox3.TabStop = false;
-            groupBox3.Text = "Сортировать по:";
+            groupBox3.Text = "РЎРѕСЂС‚РёСЂРѕРІР°С‚СЊ РїРѕ:";
 
             // 
             // groupBox4
@@ -429,9 +429,9 @@ namespace UchetUSP.Layout
             groupBox4.Size = new System.Drawing.Size(171, 80);
             groupBox4.TabIndex = 10;
             groupBox4.TabStop = false;
-            groupBox4.Text = "Функционал:";
+            groupBox4.Text = "Р¤СѓРЅРєС†РёРѕРЅР°Р»:";
 
-            //сортировка по дате
+            //СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РґР°С‚Рµ
 
             // 
             // label2
@@ -441,7 +441,7 @@ namespace UchetUSP.Layout
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "по";
+            this.label2.Text = "РїРѕ";
             // 
             // groupBox1
             // 
@@ -454,7 +454,7 @@ namespace UchetUSP.Layout
             this.gBDateFilter.Size = new System.Drawing.Size(171, 77);
             this.gBDateFilter.TabIndex = 0;
             this.gBDateFilter.TabStop = false;
-            this.gBDateFilter.Text = "Вывести:";
+            this.gBDateFilter.Text = "Р’С‹РІРµСЃС‚Рё:";
             gBDateFilter.ForeColor = System.Drawing.Color.Black;
             // 
             // label1
@@ -464,7 +464,7 @@ namespace UchetUSP.Layout
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(13, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "с";
+            this.label1.Text = "СЃ";
 
             // 
             // dateTimePicker1
@@ -485,7 +485,7 @@ namespace UchetUSP.Layout
             dateTimePicker2.CloseUp += new System.EventHandler(dTP_ValueChanged);
             dateTimePicker2.MouseHover += new System.EventHandler(dateTimePicker2_MainForm);
 
-            //установка dateTimePicker1 и dateTimePicker2
+            //СѓСЃС‚Р°РЅРѕРІРєР° dateTimePicker1 Рё dateTimePicker2
 
             this.dateTimePicker1.Value = this.dateTimePicker2.Value.AddMonths(-1);
 
@@ -522,38 +522,38 @@ namespace UchetUSP.Layout
         {
             if ((dGV.RowCount > 0) && (dGV.CurrentCell != null))
             {
-                bool isTZ = false; //сортировка по ТЗ вне ВПП
-                if (comboBox1.Text == "ТЗ (без ВПП)")
+                bool isTZ = false; //СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РўР— РІРЅРµ Р’РџРџ
+                if (comboBox1.Text == "РўР— (Р±РµР· Р’РџРџ)")
                 {
                     isTZ = true;
                 }
 
-                if ((sender as ComboBox).Text == "ВПП")
+                if ((sender as ComboBox).Text == "Р’РџРџ")
                 {
-                    if (!isTZ)//!сортировка по ТЗ вне ВПП
+                    if (!isTZ)//!СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РўР— РІРЅРµ Р’РџРџ
                     {
-                        string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["Номер ВПП"].Value.ToString();
-                        if (cell != "") //не ТЗ вне ВПП
+                        string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["РќРѕРјРµСЂ Р’РџРџ"].Value.ToString();
+                        if (cell != "") //РЅРµ РўР— РІРЅРµ Р’РџРџ
                         {
                             VPP doc = new VPP(cell);
                             doc.createXLS();
                         }
                     }
                 }
-                else if ((sender as ComboBox).Text == "ТЗ")
+                else if ((sender as ComboBox).Text == "РўР—")
                 {
-                    if (!isTZ)//!сортировка по ТЗ вне ВПП
+                    if (!isTZ)//!СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РўР— РІРЅРµ Р’РџРџ
                     {
-                        string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["Номер ВПП"].Value.ToString();
+                        string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["РќРѕРјРµСЂ Р’РџРџ"].Value.ToString();
 
-                        if (cell != "")//не ТЗ вне ВПП
+                        if (cell != "")//РЅРµ РўР— РІРЅРµ Р’РџРџ
                         {
-                            int TZPos = Int32.Parse(dGV.Rows[dGV.CurrentCell.RowIndex].Cells["Позиция ТЗ в ВПП"].Value.ToString());
+                            int TZPos = Int32.Parse(dGV.Rows[dGV.CurrentCell.RowIndex].Cells["РџРѕР·РёС†РёСЏ РўР— РІ Р’РџРџ"].Value.ToString());
                             Dictionary<string, string> Dict = Instrumentary.setDictTZ(cell, TZPos);
                             xlsTZ tzDoc = new xlsTZ(Dict);
                             tzDoc.createDocument();
                         }
-                        else //однозначно ТЗ вне ВПП
+                        else //РѕРґРЅРѕР·РЅР°С‡РЅРѕ РўР— РІРЅРµ Р’РџРџ
                         {
                             string cellDocId = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["ID_DOC"].Value.ToString();
                                 CreateTZ tz = new CreateTZ(1, 0, cellDocId);
@@ -561,19 +561,19 @@ namespace UchetUSP.Layout
 
                         }
                     }
-                    else //однозначно ТЗ вне ВПП
+                    else //РѕРґРЅРѕР·РЅР°С‡РЅРѕ РўР— РІРЅРµ Р’РџРџ
                     {
                         string cellDocId = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["ID_DOC"].Value.ToString();
                             CreateTZ tz = new CreateTZ(1, 0, cellDocId);
                             tz.createXLS();
                     }
                 }
-                else if ((sender as ComboBox).Text == "Спецификация")
+                else if ((sender as ComboBox).Text == "РЎРїРµС†РёС„РёРєР°С†РёСЏ")
                 {
-                    if (!isTZ)//!сортировка по ТЗ вне ВПП
+                    if (!isTZ)//!СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РўР— РІРЅРµ Р’РџРџ
                     {
-                        string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["Номер ВПП"].Value.ToString();
-                        if (cell != "")//не ТЗ вне ВПП
+                        string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["РќРѕРјРµСЂ Р’РџРџ"].Value.ToString();
+                        if (cell != "")//РЅРµ РўР— РІРЅРµ Р’РџРџ
                         {
                             _startKTC();
                         }
@@ -581,29 +581,29 @@ namespace UchetUSP.Layout
                 }
                 else
                 {
-                    if (!isTZ)//!сортировка по ТЗ вне ВПП
+                    if (!isTZ)//!СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РўР— РІРЅРµ Р’РџРџ
                     {
-                        string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["Номер ВПП"].Value.ToString();
-                        if (cell != "")//не ТЗ вне ВПП
+                        string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["РќРѕРјРµСЂ Р’РџРџ"].Value.ToString();
+                        if (cell != "")//РЅРµ РўР— РІРЅРµ Р’РџРџ
                         {
                             VPP doc = new VPP(cell);
                             doc.createXLS();
 
-                            int TZPos = Int32.Parse(dGV.Rows[dGV.CurrentCell.RowIndex].Cells["Позиция ТЗ в ВПП"].Value.ToString());
+                            int TZPos = Int32.Parse(dGV.Rows[dGV.CurrentCell.RowIndex].Cells["РџРѕР·РёС†РёСЏ РўР— РІ Р’РџРџ"].Value.ToString());
                             Dictionary<string, string> Dict = Instrumentary.setDictTZ(cell, TZPos);
                             xlsTZ tzDoc = new xlsTZ(Dict);
                             tzDoc.createDocument();
 
                             _startKTC();
                         }
-                        else //однозначно ТЗ вне ВПП
+                        else //РѕРґРЅРѕР·РЅР°С‡РЅРѕ РўР— РІРЅРµ Р’РџРџ
                         {
                             string cellDocId = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["ID_DOC"].Value.ToString();
                             CreateTZ tz = new CreateTZ(1, 0, cellDocId);
                             tz.createXLS();
                         }
                     }
-                    else //однозначно ТЗ вне ВПП
+                    else //РѕРґРЅРѕР·РЅР°С‡РЅРѕ РўР— РІРЅРµ Р’РџРџ
                     {
                         string cellDocId = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["ID_DOC"].Value.ToString();
                         CreateTZ tz = new CreateTZ(1, 0, cellDocId);
@@ -625,7 +625,7 @@ namespace UchetUSP.Layout
         }
 
         /// <summary>
-        /// Заполнение DataGridView ТЗшками или листами заказа
+        /// Р—Р°РїРѕР»РЅРµРЅРёРµ DataGridView РўР—С€РєР°РјРё РёР»Рё Р»РёСЃС‚Р°РјРё Р·Р°РєР°Р·Р°
         /// </summary>
         public void fillOrders()
         {
@@ -664,10 +664,10 @@ namespace UchetUSP.Layout
         }
 
         //////////////////////////////////////////////////////////////////////////
-        ////////СОБЫТИЯ И ФУНКЦИИ ПАНЕЛИ ВЫВОДА ВПП/ВЗД/ТЗ///////////////////////
+        ////////РЎРћР‘Р«РўРРЇ Р Р¤РЈРќРљР¦РР РџРђРќР•Р›Р Р’Р«Р’РћР”Рђ Р’РџРџ/Р’Р—Р”/РўР—///////////////////////
         /////////////////////////////////////////////////////////////////////////
 
-        //Вывести VPP
+        //Р’С‹РІРµСЃС‚Рё VPP
         /*private void ShowOrder_Click(object sender, EventArgs e)
         {
 
@@ -700,10 +700,10 @@ namespace UchetUSP.Layout
             {
                 throw new ObjectDisposedException("Layout");
             }
-            if (AccessUser.AccessUser.GetRLType(1))//доступ кладовщицы
+            if (AccessUser.AccessUser.GetRLType(1))//РґРѕСЃС‚СѓРї РєР»Р°РґРѕРІС‰РёС†С‹
             {
                 
-                if (comboBox1.Text == "ВСЕ")
+                if (comboBox1.Text == "Р’РЎР•")
                 {
                     if (dGV[0, dGV.SelectedCells[0].RowIndex].Value.ToString().Equals(""))
                     {
@@ -714,18 +714,18 @@ namespace UchetUSP.Layout
                         _startTZ();
                     }
                 }
-                else if (comboBox1.Text == "ТЗ (без ВПП)")
+                else if (comboBox1.Text == "РўР— (Р±РµР· Р’РџРџ)")
                 {
                     _startTZ();
                 }
-                else if (comboBox1.Text == "ВПП")
+                else if (comboBox1.Text == "Р’РџРџ")
                 {
                     _startVPP();
                 }
 
             }
             else {
-                MessageBox.Show("У Вас нет прав ызова мастера создания заказа на сборку УСПО!");
+                MessageBox.Show("РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ С‹Р·РѕРІР° РјР°СЃС‚РµСЂР° СЃРѕР·РґР°РЅРёСЏ Р·Р°РєР°Р·Р° РЅР° СЃР±РѕСЂРєСѓ РЈРЎРџРћ!");
             }
            
 
@@ -733,10 +733,10 @@ namespace UchetUSP.Layout
 
         void _startVPP()
         {
-            string VPPnum = dGV["Номер ВПП", dGV.SelectedCells[0].RowIndex].Value.ToString();
-            string TZnum = dGV["Номер ТЗ", dGV.SelectedCells[0].RowIndex].Value.ToString();
-            int TZpoz = Int32.Parse(dGV["Позиция ТЗ в ВПП", dGV.SelectedCells[0].RowIndex].Value.ToString());
-            string techn = dGV["Владелец", dGV.SelectedCells[0].RowIndex].Value.ToString();
+            string VPPnum = dGV["РќРѕРјРµСЂ Р’РџРџ", dGV.SelectedCells[0].RowIndex].Value.ToString();
+            string TZnum = dGV["РќРѕРјРµСЂ РўР—", dGV.SelectedCells[0].RowIndex].Value.ToString();
+            int TZpoz = Int32.Parse(dGV["РџРѕР·РёС†РёСЏ РўР— РІ Р’РџРџ", dGV.SelectedCells[0].RowIndex].Value.ToString());
+            string techn = dGV["Р’Р»Р°РґРµР»РµС†", dGV.SelectedCells[0].RowIndex].Value.ToString();
 
             string assTitle = _ASSEMBLIES.getAssemblyTitle(VPPnum, TZpoz);
             Dictionary<string, string> Dict = _ASSEMBLIES.getElements(assTitle);
@@ -758,7 +758,7 @@ namespace UchetUSP.Layout
 
             if (notElements)
             {
-                if (MessageBox.Show("Для запуска листа заказа не хватает элементов.\n Хотите создать заказ, изменив состав сборки УСПО?", "Предупреждение!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning).ToString() == "Yes")
+                if (MessageBox.Show("Р”Р»СЏ Р·Р°РїСѓСЃРєР° Р»РёСЃС‚Р° Р·Р°РєР°Р·Р° РЅРµ С…РІР°С‚Р°РµС‚ СЌР»РµРјРµРЅС‚РѕРІ.\n РҐРѕС‚РёС‚Рµ СЃРѕР·РґР°С‚СЊ Р·Р°РєР°Р·, РёР·РјРµРЅРёРІ СЃРѕСЃС‚Р°РІ СЃР±РѕСЂРєРё РЈРЎРџРћ?", "РџСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning).ToString() == "Yes")
                 {
                     fEditAssembly FEdit = new fEditAssembly(Dict);
                     FEdit.ShowDialog();
@@ -786,7 +786,7 @@ namespace UchetUSP.Layout
         void _startTZ()
         {
             string idDoc = dGV["ID_DOC", dGV.SelectedCells[0].RowIndex].Value.ToString();
-            string techn = dGV["Владелец", dGV.SelectedCells[0].RowIndex].Value.ToString();
+            string techn = dGV["Р’Р»Р°РґРµР»РµС†", dGV.SelectedCells[0].RowIndex].Value.ToString();
 
             using (UchetUSP.AddUspOrder order = new AddUspOrder(idDoc, techn))
             {
@@ -798,7 +798,7 @@ namespace UchetUSP.Layout
 
         void _startKTC()
         {
-            string VPPNum = dGV["Номер ВПП", dGV.SelectedCells[0].RowIndex].Value.ToString();
+            string VPPNum = dGV["РќРѕРјРµСЂ Р’РџРџ", dGV.SelectedCells[0].RowIndex].Value.ToString();
             int VPPId = VPP.getId(VPPNum);
             string equipTitle = VPP.getEquipTitle(VPPId);
             int KTCId = VPP.getKTCId(equipTitle);
@@ -817,7 +817,7 @@ namespace UchetUSP.Layout
                 StartKTC.StartInfo.Arguments = Program.ConnectionString + " ";
                 //StartKTC.StartInfo.Arguments += Program.PathString + " ";
                 StartKTC.StartInfo.Arguments += "\"C:\\temp\" ";
-                StartKTC.StartInfo.Arguments += "0 "; //скорее всего права
+                StartKTC.StartInfo.Arguments += "0 "; //СЃРєРѕСЂРµРµ РІСЃРµРіРѕ РїСЂР°РІР°
                 StartKTC.StartInfo.Arguments += KTCId + " ";
                 StartKTC.StartInfo.Arguments += "00 ";
                 StartKTC.StartInfo.Arguments += "7600 ";
@@ -826,7 +826,7 @@ namespace UchetUSP.Layout
             }
             else
             {
-                MessageBox.Show("Спецификация еще не утверждена!");
+                MessageBox.Show("РЎРїРµС†РёС„РёРєР°С†РёСЏ РµС‰Рµ РЅРµ СѓС‚РІРµСЂР¶РґРµРЅР°!");
             }
         }
 
@@ -834,10 +834,10 @@ namespace UchetUSP.Layout
 
 
         //////////////////////////////////////////////////////////////////////////
-        ////ПАНЕЛЬ ПОДТВЕРЖДЕНИЯ ЛИСТА ЗАКАЗА НА ИСПОЛНЕНИЕ ЗАКАЗА///////////////
+        ////РџРђРќР•Р›Р¬ РџРћР”РўР’Р•Р Р–Р”Р•РќРРЇ Р›РРЎРўРђ Р—РђРљРђР—Рђ РќРђ РРЎРџРћР›РќР•РќРР• Р—РђРљРђР—Рђ///////////////
         /////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Функция формирования панели для отображения листов заказа для подтверждения их исполнения;
+        /// Р¤СѓРЅРєС†РёСЏ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РїР°РЅРµР»Рё РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ Р»РёСЃС‚РѕРІ Р·Р°РєР°Р·Р° РґР»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РёС… РёСЃРїРѕР»РЅРµРЅРёСЏ;
         /// </summary>
         /// <returns></returns>
         public void LayoutConfirmOrder()
@@ -926,7 +926,7 @@ namespace UchetUSP.Layout
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "по";
+            this.label2.Text = "РїРѕ";
             // 
             // groupBox1
             // 
@@ -939,7 +939,7 @@ namespace UchetUSP.Layout
             this.groupBox1.Size = new System.Drawing.Size(171, 77);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Вывести:";
+            this.groupBox1.Text = "Р’С‹РІРµСЃС‚Рё:";
             // 
             // label1
             // 
@@ -948,7 +948,7 @@ namespace UchetUSP.Layout
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(13, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "с";
+            this.label1.Text = "СЃ";
             // 
             // dateTimePicker1
             // 
@@ -968,7 +968,7 @@ namespace UchetUSP.Layout
             this.dateTimePicker2.CloseUp += new EventHandler(dTP_ValueChanged_Confirm_Order);
             dateTimePicker2.MouseHover += new System.EventHandler(dateTimePicker2_ConfirmOrder);
 
-            //установка dateTimePicker1 и dateTimePicker2
+            //СѓСЃС‚Р°РЅРѕРІРєР° dateTimePicker1 Рё dateTimePicker2
 
             this.dateTimePicker1.Value = this.dateTimePicker2.Value.AddMonths(-1);
 
@@ -980,7 +980,7 @@ namespace UchetUSP.Layout
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(171, 23);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Поиск";
+            this.button3.Text = "РџРѕРёСЃРє";
             this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(SearchLZConfirm_Click);
             this.button3.MouseHover += new System.EventHandler(button3_ConfirmOrder);
@@ -993,18 +993,18 @@ namespace UchetUSP.Layout
             this.groupBox2.Size = new System.Drawing.Size(171, 57);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Операции:";
+            this.groupBox2.Text = "РћРїРµСЂР°С†РёРё:";
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Вывести ВПП",
-            "Вывести ТЗ",
-            "Вывести спецификацию",
-            "Отобразить в Excel",
-            "Удалить"});
+            "Р’С‹РІРµСЃС‚Рё Р’РџРџ",
+            "Р’С‹РІРµСЃС‚Рё РўР—",
+            "Р’С‹РІРµСЃС‚Рё СЃРїРµС†РёС„РёРєР°С†РёСЋ",
+            "РћС‚РѕР±СЂР°Р·РёС‚СЊ РІ Excel",
+            "РЈРґР°Р»РёС‚СЊ"});
             this.comboBox1.Location = new System.Drawing.Point(6, 29);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(154, 21);
@@ -1037,18 +1037,18 @@ namespace UchetUSP.Layout
         }
 
         //////////////////////////////////////////////////////////////////////////
-        ////СОБЫТИЯ И ФУНКЦИИ ПАНЕЛИ ПОДТВЕРЖДЕНИЯ ЛИСТА ЗАКАЗА НА ИСПОЛНЕНИЕ ЗАКАЗА
+        ////РЎРћР‘Р«РўРРЇ Р Р¤РЈРќРљР¦РР РџРђРќР•Р›Р РџРћР”РўР’Р•Р Р–Р”Р•РќРРЇ Р›РРЎРўРђ Р—РђРљРђР—Рђ РќРђ РРЎРџРћР›РќР•РќРР• Р—РђРљРђР—Рђ
         /////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Метод возвращает список оформленных, не подтвержденных сборками листов заказа в заданном временном промежутке
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РѕС„РѕСЂРјР»РµРЅРЅС‹С…, РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… СЃР±РѕСЂРєР°РјРё Р»РёСЃС‚РѕРІ Р·Р°РєР°Р·Р° РІ Р·Р°РґР°РЅРЅРѕРј РІСЂРµРјРµРЅРЅРѕРј РїСЂРѕРјРµР¶СѓС‚РєРµ
         /// </summary>
-        /// <param name="fromDate">Начало временного интервала</param>
-        /// <param name="toDate">Конец временного интервала</param>
+        /// <param name="fromDate">РќР°С‡Р°Р»Рѕ РІСЂРµРјРµРЅРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°</param>
+        /// <param name="toDate">РљРѕРЅРµС† РІСЂРµРјРµРЅРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°</param>
         public void ShowNotConfirmedOrder(DateTime fromDate, DateTime toDate)
         {
             docStatus = 1;
-            dGV.DataSource = update(docStatus);
+            dGV.DataSource = Update(docStatus);
         }
 
         private void dataGridView1_CellDoubleClick_Confirm_Order(object sender, DataGridViewCellEventArgs e)
@@ -1058,7 +1058,7 @@ namespace UchetUSP.Layout
                 throw new ObjectDisposedException("Layout");
             }
 
-            if (AccessUser.AccessUser.GetRLType(1))//доступ кладовщицы
+            if (AccessUser.AccessUser.GetRLType(1))//РґРѕСЃС‚СѓРї РєР»Р°РґРѕРІС‰РёС†С‹
             {
                 string num = dGV[0, dGV.SelectedCells[0].RowIndex].Value.ToString();
 
@@ -1066,10 +1066,10 @@ namespace UchetUSP.Layout
                 {
                     order.ShowDialog();
                 }
-                dGV.DataSource = update(docStatus);
+                dGV.DataSource = Update(docStatus);
             }
             else {
-                MessageBox.Show("У Вас нет прав вызова мастера подтверждения исполнения заказа на сборку УСПО!");
+                MessageBox.Show("РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РІС‹Р·РѕРІР° РјР°СЃС‚РµСЂР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РёСЃРїРѕР»РЅРµРЅРёСЏ Р·Р°РєР°Р·Р° РЅР° СЃР±РѕСЂРєСѓ РЈРЎРџРћ!");
             }
 
         }
@@ -1079,10 +1079,10 @@ namespace UchetUSP.Layout
 
 
         //////////////////////////////////////////////////////////////////////////
-        ////ПАНЕЛЬ РАБОТЫ С ЛИСТОМ ЗАКАЗА НА ВЫДАЧУ В ЦЕХ////////////////////////
+        ////РџРђРќР•Р›Р¬ Р РђР‘РћРўР« РЎ Р›РРЎРўРћРњ Р—РђРљРђР—Рђ РќРђ Р’Р«Р”РђР§РЈ Р’ Р¦Р•РҐ////////////////////////
         /////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Функция формирования панели для отображения листов заказа для выдачи;
+        /// Р¤СѓРЅРєС†РёСЏ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РїР°РЅРµР»Рё РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ Р»РёСЃС‚РѕРІ Р·Р°РєР°Р·Р° РґР»СЏ РІС‹РґР°С‡Рё;
         /// </summary>
         /// <returns></returns>
         public void LayoutGrantOrder()
@@ -1170,7 +1170,7 @@ namespace UchetUSP.Layout
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "по";
+            this.label2.Text = "РїРѕ";
             // 
             // groupBox1
             // 
@@ -1183,7 +1183,7 @@ namespace UchetUSP.Layout
             this.groupBox1.Size = new System.Drawing.Size(171, 77);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Вывести:";
+            this.groupBox1.Text = "Р’С‹РІРµСЃС‚Рё:";
             // 
             // label1
             // 
@@ -1192,7 +1192,7 @@ namespace UchetUSP.Layout
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(13, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "с";
+            this.label1.Text = "СЃ";
             // 
             // dateTimePicker1
             // 
@@ -1212,7 +1212,7 @@ namespace UchetUSP.Layout
             this.dateTimePicker2.CloseUp += new EventHandler(dTP_ValueChanged_Grant_Order);
             this.dateTimePicker2.MouseHover += new System.EventHandler(dateTimePicker2_GrantOrder); 
 
-            //установка dateTimePicker1 и dateTimePicker2
+            //СѓСЃС‚Р°РЅРѕРІРєР° dateTimePicker1 Рё dateTimePicker2
 
             this.dateTimePicker1.Value = this.dateTimePicker2.Value.AddMonths(-1);
 
@@ -1224,7 +1224,7 @@ namespace UchetUSP.Layout
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(171, 23);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Поиск";
+            this.button3.Text = "РџРѕРёСЃРє";
             this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(SearchGrantOrder_Click);
             this.button3.MouseHover += new System.EventHandler(button3_GrantOrder);  
@@ -1237,19 +1237,19 @@ namespace UchetUSP.Layout
             this.groupBox2.Size = new System.Drawing.Size(171, 57);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Операции:";
+            this.groupBox2.Text = "РћРїРµСЂР°С†РёРё:";
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Вывести ВПП",
-            "Вывести ТЗ",
-            "Вывести спецификацию",
-            "Отобразить в Excel",
-            "Отменить сборку",
-            "Удалить"});
+            "Р’С‹РІРµСЃС‚Рё Р’РџРџ",
+            "Р’С‹РІРµСЃС‚Рё РўР—",
+            "Р’С‹РІРµСЃС‚Рё СЃРїРµС†РёС„РёРєР°С†РёСЋ",
+            "РћС‚РѕР±СЂР°Р·РёС‚СЊ РІ Excel",
+            "РћС‚РјРµРЅРёС‚СЊ СЃР±РѕСЂРєСѓ",
+            "РЈРґР°Р»РёС‚СЊ"});
             this.comboBox1.Location = new System.Drawing.Point(6, 29);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(154, 21);
@@ -1281,18 +1281,18 @@ namespace UchetUSP.Layout
         }
 
         //////////////////////////////////////////////////////////////////////////
-        ////СОБЫТИЯ И ФУНКЦИИ ПАНЕЛИ РАБОТЫ С ЛИСТОМ ЗАКАЗА НА ВЫДАЧУ В ЦЕХ//////
+        ////РЎРћР‘Р«РўРРЇ Р Р¤РЈРќРљР¦РР РџРђРќР•Р›Р Р РђР‘РћРўР« РЎ Р›РРЎРўРћРњ Р—РђРљРђР—Рђ РќРђ Р’Р«Р”РђР§РЈ Р’ Р¦Р•РҐ//////
         /////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Метод возвращает список подтвержденных сборками, но еще не выданных листов заказа в заданном временном промежутке
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅС‹С… СЃР±РѕСЂРєР°РјРё, РЅРѕ РµС‰Рµ РЅРµ РІС‹РґР°РЅРЅС‹С… Р»РёСЃС‚РѕРІ Р·Р°РєР°Р·Р° РІ Р·Р°РґР°РЅРЅРѕРј РІСЂРµРјРµРЅРЅРѕРј РїСЂРѕРјРµР¶СѓС‚РєРµ
         /// </summary>
-        /// <param name="fromDate">Начало временного интервала</param>
-        /// <param name="toDate">Конец временного интервала</param>
+        /// <param name="fromDate">РќР°С‡Р°Р»Рѕ РІСЂРµРјРµРЅРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°</param>
+        /// <param name="toDate">РљРѕРЅРµС† РІСЂРµРјРµРЅРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°</param>
         public void ShowNotGrantedOrder(DateTime fromDate, DateTime toDate)
         {
             docStatus = 2;
-            dGV.DataSource = update(docStatus);
+            dGV.DataSource = Update(docStatus);
         }
 
         private void dataGridView1_CellDoubleClick_Grant_Order(object sender, DataGridViewCellEventArgs e)
@@ -1301,7 +1301,7 @@ namespace UchetUSP.Layout
             {
                 throw new ObjectDisposedException("Layout");
             }
-            if (AccessUser.AccessUser.GetRLType(1))//доступ кладовщицы
+            if (AccessUser.AccessUser.GetRLType(1))//РґРѕСЃС‚СѓРї РєР»Р°РґРѕРІС‰РёС†С‹
             {
                 string num = dGV[0, dGV.SelectedCells[0].RowIndex].Value.ToString();
 
@@ -1309,11 +1309,11 @@ namespace UchetUSP.Layout
                 {
                     order.ShowDialog();
                 }
-                dGV.DataSource = update(docStatus);
+                dGV.DataSource = Update(docStatus);
             }
             else
             {
-                MessageBox.Show("У Вас нет прав вызова мастера выдачи сборки УСПО!");
+                MessageBox.Show("РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РІС‹Р·РѕРІР° РјР°СЃС‚РµСЂР° РІС‹РґР°С‡Рё СЃР±РѕСЂРєРё РЈРЎРџРћ!");
             }
 
         }
@@ -1323,11 +1323,11 @@ namespace UchetUSP.Layout
 
 
         //////////////////////////////////////////////////////////////////////////
-        ////ПАНЕЛЬ РАБОТЫ С ЛИСТОМ ЗАКАЗА НА ПОЛУЧЕНИЕ СБОРКИ ИЗ ЦЕХА////////////
+        ////РџРђРќР•Р›Р¬ Р РђР‘РћРўР« РЎ Р›РРЎРўРћРњ Р—РђРљРђР—Рђ РќРђ РџРћР›РЈР§Р•РќРР• РЎР‘РћР РљР РР— Р¦Р•РҐРђ////////////
         /////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Функция формирования панели для отображения листов заказа для возврата;
+        /// Р¤СѓРЅРєС†РёСЏ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РїР°РЅРµР»Рё РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ Р»РёСЃС‚РѕРІ Р·Р°РєР°Р·Р° РґР»СЏ РІРѕР·РІСЂР°С‚Р°;
         /// </summary>
         /// <returns></returns>
         public void LayoutGetOrder()
@@ -1415,7 +1415,7 @@ namespace UchetUSP.Layout
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "по";
+            this.label2.Text = "РїРѕ";
             // 
             // groupBox1
             // 
@@ -1428,7 +1428,7 @@ namespace UchetUSP.Layout
             this.groupBox1.Size = new System.Drawing.Size(171, 77);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Вывести:";
+            this.groupBox1.Text = "Р’С‹РІРµСЃС‚Рё:";
             // 
             // label1
             // 
@@ -1437,7 +1437,7 @@ namespace UchetUSP.Layout
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(13, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "с";
+            this.label1.Text = "СЃ";
             // 
             // dateTimePicker1
             // 
@@ -1457,7 +1457,7 @@ namespace UchetUSP.Layout
             this.dateTimePicker2.CloseUp += new EventHandler(dTP_ValueChanged_Get_Order);
             this.dateTimePicker2.MouseHover += new System.EventHandler(dateTimePicker2_GetOrder);
 
-            //установка dateTimePicker1 и dateTimePicker2
+            //СѓСЃС‚Р°РЅРѕРІРєР° dateTimePicker1 Рё dateTimePicker2
 
             this.dateTimePicker1.Value = this.dateTimePicker2.Value.AddMonths(-1);
 
@@ -1469,7 +1469,7 @@ namespace UchetUSP.Layout
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(171, 23);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Поиск";
+            this.button3.Text = "РџРѕРёСЃРє";
             this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(SearchGetOrder_Click);
             this.button3.MouseHover += new System.EventHandler(button3_GetOrder);
@@ -1482,19 +1482,19 @@ namespace UchetUSP.Layout
             this.groupBox2.Size = new System.Drawing.Size(171, 57);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Операции:";
+            this.groupBox2.Text = "РћРїРµСЂР°С†РёРё:";
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Вывести ВПП",
-            "Вывести ТЗ",
-            "Вывести спецификацию",
-            "Отобразить в Excel",
-            "Отменить выдачу заказчику",
-            "Удалить"});
+            "Р’С‹РІРµСЃС‚Рё Р’РџРџ",
+            "Р’С‹РІРµСЃС‚Рё РўР—",
+            "Р’С‹РІРµСЃС‚Рё СЃРїРµС†РёС„РёРєР°С†РёСЋ",
+            "РћС‚РѕР±СЂР°Р·РёС‚СЊ РІ Excel",
+            "РћС‚РјРµРЅРёС‚СЊ РІС‹РґР°С‡Сѓ Р·Р°РєР°Р·С‡РёРєСѓ",
+            "РЈРґР°Р»РёС‚СЊ"});
             this.comboBox1.Location = new System.Drawing.Point(6, 29);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(154, 21);
@@ -1525,18 +1525,18 @@ namespace UchetUSP.Layout
         }
 
         //////////////////////////////////////////////////////////////////////////
-        ////СОБЫТИЯ И ФУНКЦИИ ПАНЕЛИ РАБОТЫ С ЛИСТОМ ЗАКАЗА НА ПОЛУЧЕНИЕ СБОРКИ ИЗ ЦЕХА
+        ////РЎРћР‘Р«РўРРЇ Р Р¤РЈРќРљР¦РР РџРђРќР•Р›Р Р РђР‘РћРўР« РЎ Р›РРЎРўРћРњ Р—РђРљРђР—Рђ РќРђ РџРћР›РЈР§Р•РќРР• РЎР‘РћР РљР РР— Р¦Р•РҐРђ
         /////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Метод возвращает список листов заказа, сборки которых выданы в цеха в заданном временном промежутке
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє Р»РёСЃС‚РѕРІ Р·Р°РєР°Р·Р°, СЃР±РѕСЂРєРё РєРѕС‚РѕСЂС‹С… РІС‹РґР°РЅС‹ РІ С†РµС…Р° РІ Р·Р°РґР°РЅРЅРѕРј РІСЂРµРјРµРЅРЅРѕРј РїСЂРѕРјРµР¶СѓС‚РєРµ
         /// </summary>
-        /// <param name="fromDate">Начало временного интервала</param>
-        /// <param name="toDate">Конец временного интервала</param>
+        /// <param name="fromDate">РќР°С‡Р°Р»Рѕ РІСЂРµРјРµРЅРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°</param>
+        /// <param name="toDate">РљРѕРЅРµС† РІСЂРµРјРµРЅРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°</param>
         public void ShowNotGetOrder(DateTime fromDate, DateTime toDate)
         {
             docStatus = 3;
-            dGV.DataSource = update(docStatus);
+            dGV.DataSource = Update(docStatus);
         }
 
         private void dataGridView1_CellDoubleClick_Get_Order(object sender, DataGridViewCellEventArgs e)
@@ -1546,7 +1546,7 @@ namespace UchetUSP.Layout
                 throw new ObjectDisposedException("Layout");
             }
 
-            if (AccessUser.AccessUser.GetRLType(1))//доступ кладовщицы
+            if (AccessUser.AccessUser.GetRLType(1))//РґРѕСЃС‚СѓРї РєР»Р°РґРѕРІС‰РёС†С‹
             {
 
                 string num = dGV[0, dGV.SelectedCells[0].RowIndex].Value.ToString();
@@ -1555,11 +1555,11 @@ namespace UchetUSP.Layout
                 {
                     order.ShowDialog();
                 }
-                dGV.DataSource = update(docStatus);
+                dGV.DataSource = Update(docStatus);
             }
             else
             {
-                MessageBox.Show("У Вас нет прав вызова мастера возврата оснастки на участок УСПО!");
+                MessageBox.Show("РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РІС‹Р·РѕРІР° РјР°СЃС‚РµСЂР° РІРѕР·РІСЂР°С‚Р° РѕСЃРЅР°СЃС‚РєРё РЅР° СѓС‡Р°СЃС‚РѕРє РЈРЎРџРћ!");
             }
             
 
@@ -1570,11 +1570,11 @@ namespace UchetUSP.Layout
 
 
         //////////////////////////////////////////////////////////////////////////
-        ////ПАНЕЛЬ РАБОТЫ С ИСТОРИЕЙ ПО ЛИСТАМ ЗАКАЗВОВ НА ОПРЕДЕЛЕННЫЙ ПЕРИУД ВРЕМЕНИ
+        ////РџРђРќР•Р›Р¬ Р РђР‘РћРўР« РЎ РРЎРўРћР РР•Р™ РџРћ Р›РРЎРўРђРњ Р—РђРљРђР—Р’РћР’ РќРђ РћРџР Р•Р”Р•Р›Р•РќРќР«Р™ РџР•Р РРЈР” Р’Р Р•РњР•РќР
         /////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Функция формирования панели для отображения истории по  листам заказов;
+        /// Р¤СѓРЅРєС†РёСЏ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РїР°РЅРµР»Рё РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РёСЃС‚РѕСЂРёРё РїРѕ  Р»РёСЃС‚Р°Рј Р·Р°РєР°Р·РѕРІ;
         /// </summary>
         /// <returns></returns>
         public void LayoutHistoryOrder()
@@ -1655,7 +1655,7 @@ namespace UchetUSP.Layout
             groupBox1.Size = new System.Drawing.Size(171, 77);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Вывести:";
+            groupBox1.Text = "Р’С‹РІРµСЃС‚Рё:";
             // 
             // groupBox2
             // 
@@ -1665,7 +1665,7 @@ namespace UchetUSP.Layout
             groupBox2.Size = new System.Drawing.Size(171, 47);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Операции:";
+            groupBox2.Text = "РћРїРµСЂР°С†РёРё:";
             // 
             // groupBox3
             // 
@@ -1676,7 +1676,7 @@ namespace UchetUSP.Layout
             groupBox3.Size = new System.Drawing.Size(171, 72);
             groupBox3.TabIndex = 0;
             groupBox3.TabStop = false;
-            groupBox3.Text = "Карта учета:";
+            groupBox3.Text = "РљР°СЂС‚Р° СѓС‡РµС‚Р°:";
             // 
             // button1
             // 
@@ -1684,7 +1684,7 @@ namespace UchetUSP.Layout
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(141, 24);
             button1.TabIndex = 3;
-            button1.Text = "Вывести";
+            button1.Text = "Р’С‹РІРµСЃС‚Рё";
             button1.UseVisualStyleBackColor = true;
             button1.Click += new EventHandler(AccountingCard_Click);
             // 
@@ -1704,7 +1704,7 @@ namespace UchetUSP.Layout
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(13, 13);
             label1.TabIndex = 1;
-            label1.Text = "с";
+            label1.Text = "СЃ";
             // 
             // label2
             // 
@@ -1713,7 +1713,7 @@ namespace UchetUSP.Layout
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(19, 13);
             label2.TabIndex = 2;
-            label2.Text = "по";
+            label2.Text = "РїРѕ";
             // 
             // dateTimePicker2
             // 
@@ -1724,7 +1724,7 @@ namespace UchetUSP.Layout
             this.dateTimePicker2.CloseUp += new EventHandler(dTP_ValueChanged_History_Order);
             this.dateTimePicker2.MouseHover += new System.EventHandler(dateTimePicker2_HistoryOrder);
 
-            //установка dateTimePicker1 и dateTimePicker2
+            //СѓСЃС‚Р°РЅРѕРІРєР° dateTimePicker1 Рё dateTimePicker2
 
             this.dateTimePicker1.Value = this.dateTimePicker2.Value.AddMonths(-1);
 
@@ -1746,12 +1746,12 @@ namespace UchetUSP.Layout
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Вывести ВПП",
-            "Вывести ТЗ",
-            "Вывести спецификацию",
-            "Отобразить в Excel",
-            "Отменить возвращение на склад",
-            "Удалить"});
+            "Р’С‹РІРµСЃС‚Рё Р’РџРџ",
+            "Р’С‹РІРµСЃС‚Рё РўР—",
+            "Р’С‹РІРµСЃС‚Рё СЃРїРµС†РёС„РёРєР°С†РёСЋ",
+            "РћС‚РѕР±СЂР°Р·РёС‚СЊ РІ Excel",
+            "РћС‚РјРµРЅРёС‚СЊ РІРѕР·РІСЂР°С‰РµРЅРёРµ РЅР° СЃРєР»Р°Рґ",
+            "РЈРґР°Р»РёС‚СЊ"});
             this.comboBox1.Location = new System.Drawing.Point(6, 19);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(154, 21);
@@ -1765,7 +1765,7 @@ namespace UchetUSP.Layout
             button3.Name = "button3";
             button3.Size = new System.Drawing.Size(171, 23);
             button3.TabIndex = 3;
-            button3.Text = "Поиск";
+            button3.Text = "РџРѕРёСЃРє";
             button3.UseVisualStyleBackColor = true;
 			 button3.Click += new System.EventHandler(SearchHistoryOrder_Click);
              this.button3.MouseHover += new System.EventHandler(button3_HistoryOrder);
@@ -1824,14 +1824,14 @@ namespace UchetUSP.Layout
         }
 
         //////////////////////////////////////////////////////////////////////////
-        ////СОБЫТИЯ И ФУНКЦИИ ПАНЕЛИ РАБОТЫ С ИСТОРИЕЙ ПО ЛИСТАМ ЗАКАЗВОВ НА ОПРЕДЕЛЕННЫЙ ПЕРИУД ВРЕМЕНИ
+        ////РЎРћР‘Р«РўРРЇ Р Р¤РЈРќРљР¦РР РџРђРќР•Р›Р Р РђР‘РћРўР« РЎ РРЎРўРћР РР•Р™ РџРћ Р›РРЎРўРђРњ Р—РђРљРђР—Р’РћР’ РќРђ РћРџР Р•Р”Р•Р›Р•РќРќР«Р™ РџР•Р РРЈР” Р’Р Р•РњР•РќР
         /////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Метод возвращает список листов заказов, по которым сборки возвращены на участок УСПО в заданном временном промежутке
+        /// РњРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє Р»РёСЃС‚РѕРІ Р·Р°РєР°Р·РѕРІ, РїРѕ РєРѕС‚РѕСЂС‹Рј СЃР±РѕСЂРєРё РІРѕР·РІСЂР°С‰РµРЅС‹ РЅР° СѓС‡Р°СЃС‚РѕРє РЈРЎРџРћ РІ Р·Р°РґР°РЅРЅРѕРј РІСЂРµРјРµРЅРЅРѕРј РїСЂРѕРјРµР¶СѓС‚РєРµ
         /// </summary>
-        /// <param name="fromDate">Начало временного интервала</param>
-        /// <param name="toDate">Конец временного интервала</param>
+        /// <param name="fromDate">РќР°С‡Р°Р»Рѕ РІСЂРµРјРµРЅРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°</param>
+        /// <param name="toDate">РљРѕРЅРµС† РІСЂРµРјРµРЅРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°</param>
         public void ShowHistoryOrder(DateTime fromDate, DateTime toDate)
         {
             if (isDisposed)
@@ -1840,7 +1840,7 @@ namespace UchetUSP.Layout
             }
 
             docStatus = 4;
-            dGV.DataSource = update(docStatus);
+            dGV.DataSource = Update(docStatus);
 
         }
 
@@ -1850,32 +1850,32 @@ namespace UchetUSP.Layout
         }
 
 
-        DataTable update(int status)
+        DataTable Update(int status)
         {
-            DataTable DT;
+            DataTable dt;
             switch (status)
             {
                 case 1:
-                    DT = _ASSEMBLY_ORDERS.getOrders(status, dateTimePicker1.Value, dateTimePicker2.Value, "CREATION_DATE");
-                    DT.Columns[6].ColumnName = "Дата создания листа заказа";
+                    dt = AssemblyOrders.GetOrders(status, dateTimePicker1.Value, dateTimePicker2.Value, "CREATION_DATE");
+                    dt.Columns[6].ColumnName = "Р”Р°С‚Р° СЃРѕР·РґР°РЅРёСЏ Р»РёСЃС‚Р° Р·Р°РєР°Р·Р°";
                     break;
                 case 2:
-                    DT = _ASSEMBLY_ORDERS.getOrders(status, dateTimePicker1.Value, dateTimePicker2.Value, "ASSEMBLY_CREATION_DATE");
-                    DT.Columns[6].ColumnName = "Дата создания сборки";
+                    dt = AssemblyOrders.GetOrders(status, dateTimePicker1.Value, dateTimePicker2.Value, "ASSEMBLY_CREATION_DATE");
+                    dt.Columns[6].ColumnName = "Р”Р°С‚Р° СЃРѕР·РґР°РЅРёСЏ СЃР±РѕСЂРєРё";
                     break;
                 case 3:
-                    DT = _ASSEMBLY_ORDERS.getOrders(status, dateTimePicker1.Value, dateTimePicker2.Value, "ASSEMBLY_DELIVERY_DATE");
-                    DT.Columns[6].ColumnName = "Дата поставки сборки";
+                    dt = AssemblyOrders.GetOrders(status, dateTimePicker1.Value, dateTimePicker2.Value, "ASSEMBLY_DELIVERY_DATE");
+                    dt.Columns[6].ColumnName = "Р”Р°С‚Р° РїРѕСЃС‚Р°РІРєРё СЃР±РѕСЂРєРё";
                     break;
                 case 4:
-                    DT = _ASSEMBLY_ORDERS.getOrders(status, dateTimePicker1.Value, dateTimePicker2.Value, "ASSEMBLY_RETURN_DATE");
-                    DT.Columns[6].ColumnName = "Дата возврата сборки";
+                    dt = AssemblyOrders.GetCompletedOrders(dateTimePicker1.Value,
+                                                           dateTimePicker2.Value);
                     break;
                 default:
-                    DT = null;
+                    dt = null;
                     break;
             }
-            return DT;
+            return dt;
         }
 
         void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1883,23 +1883,23 @@ namespace UchetUSP.Layout
             if (dGV.Rows.Count > 0)
             {
                 string cell = dGV.Rows[dGV.CurrentCell.RowIndex].Cells[0].Value.ToString();
-                if ((sender as ComboBox).Text == "Удалить")
-                {//доступ кладовщицы
+                if ((sender as ComboBox).Text == "РЈРґР°Р»РёС‚СЊ")
+                {//РґРѕСЃС‚СѓРї РєР»Р°РґРѕРІС‰РёС†С‹
                     if (AccessUser.AccessUser.GetRLType(1))
                     {
-                        if (MessageBox.Show("Вы действительно хотите удалить лист заказа № " + cell + " ?\nУдаленная информация не может быть восстановлена!", "Предупреждение!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning).ToString() == "Yes")
+                        if (MessageBox.Show("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ Р»РёСЃС‚ Р·Р°РєР°Р·Р° в„– " + cell + " ?\nРЈРґР°Р»РµРЅРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅР°!", "РџСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning).ToString() == "Yes")
                         {
-                            _ASSEMBLY_ORDERS.deleteOrder(cell);
-                            dGV.DataSource = update(docStatus);
-                            MessageBox.Show("Лист заказа успешно удален!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            AssemblyOrders.deleteOrder(cell);
+                            dGV.DataSource = Update(docStatus);
+                            MessageBox.Show("Р›РёСЃС‚ Р·Р°РєР°Р·Р° СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ!", "РРЅС„РѕСЂРјР°С†РёСЏ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("У Вас нет прав на удаление Листов Заказа!");
+                        MessageBox.Show("РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РЅР° СѓРґР°Р»РµРЅРёРµ Р›РёСЃС‚РѕРІ Р—Р°РєР°Р·Р°!");
                     }
                 }
-                else if ((sender as ComboBox).Text == "Отобразить в Excel")
+                else if ((sender as ComboBox).Text == "РћС‚РѕР±СЂР°Р·РёС‚СЊ РІ Excel")
                 {
                     if (docStatus == 1)
                     {
@@ -1922,9 +1922,9 @@ namespace UchetUSP.Layout
                     }
 
                 }
-                else if ((sender as ComboBox).Text == "Вывести ВПП")
+                else if ((sender as ComboBox).Text == "Р’С‹РІРµСЃС‚Рё Р’РџРџ")
                 {
-                    string VPPNum = _ASSEMBLY_ORDERS.getVPPnumber(cell);
+                    string VPPNum = AssemblyOrders.getVPPnumber(cell);
 
                     if (VPPNum != "")
                     {
@@ -1932,12 +1932,12 @@ namespace UchetUSP.Layout
                         doc.createXLS();
                     }
                 }
-                else if ((sender as ComboBox).Text == "Вывести ТЗ")
+                else if ((sender as ComboBox).Text == "Р’С‹РІРµСЃС‚Рё РўР—")
                 {
-                    string VPPNum = _ASSEMBLY_ORDERS.getVPPnumber(cell);
+                    string VPPNum = AssemblyOrders.getVPPnumber(cell);
                     if (VPPNum != "")
                     {
-                        string TZNum = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["Номер ТЗ"].Value.ToString();
+                        string TZNum = dGV.Rows[dGV.CurrentCell.RowIndex].Cells["РќРѕРјРµСЂ РўР—"].Value.ToString();
                         int TZPos = _VPP_TZ.getPosition(VPPNum, TZNum);
                         Dictionary<string, string> Dict = Instrumentary.setDictTZ(VPPNum, TZPos);
                         xlsTZ tzDoc = new xlsTZ(Dict);
@@ -1945,7 +1945,7 @@ namespace UchetUSP.Layout
                     }
                     else
                     {
-                        string cellDocId = _ASSEMBLY_ORDERS.getTZId(cell);
+                        string cellDocId = AssemblyOrders.getTZId(cell);
 
                         if (cellDocId != "")
                         {
@@ -1954,31 +1954,31 @@ namespace UchetUSP.Layout
                         }
                     }
                 }
-                else if ((sender as ComboBox).Text == "Вывести спецификацию")
+                else if ((sender as ComboBox).Text == "Р’С‹РІРµСЃС‚Рё СЃРїРµС†РёС„РёРєР°С†РёСЋ")
                 {
-                    string cellNum = dGV["Номер", dGV.CurrentCell.RowIndex].Value.ToString();
-                    if (!_ASSEMBLY_ORDERS.isTZ(cellNum))
+                    string cellNum = dGV["РќРѕРјРµСЂ", dGV.CurrentCell.RowIndex].Value.ToString();
+                    if (!AssemblyOrders.isTZ(cellNum))
                     {
-                        int VPPId = _ASSEMBLY_ORDERS.getVPPId(cellNum);
+                        int VPPId = AssemblyOrders.getVPPId(cellNum);
                         string equipTitle = VPP.getEquipTitle(VPPId);
                         _startKTC();
                     }
                 }
                 else
                 {
-                    //доступ кладовщицы
+                    //РґРѕСЃС‚СѓРї РєР»Р°РґРѕРІС‰РёС†С‹
                     if (AccessUser.AccessUser.GetRLType(1))
                     {
-                        if (MessageBox.Show("Вы действительно хотите перевести листа заказа № " + cell + " на предыдущую стадию?", "Предупреждение", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning).ToString() == "Yes")
+                        if (MessageBox.Show("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РїРµСЂРµРІРµСЃС‚Рё Р»РёСЃС‚Р° Р·Р°РєР°Р·Р° в„– " + cell + " РЅР° РїСЂРµРґС‹РґСѓС‰СѓСЋ СЃС‚Р°РґРёСЋ?", "РџСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning).ToString() == "Yes")
                         {
-                            _ASSEMBLY_ORDERS.setStatus(docStatus - 1, cell);
-                            dGV.DataSource = update(docStatus);
-                            MessageBox.Show("Стадия изменена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            AssemblyOrders.setStatus(docStatus - 1, cell);
+                            dGV.DataSource = Update(docStatus);
+                            MessageBox.Show("РЎС‚Р°РґРёСЏ РёР·РјРµРЅРµРЅР°!", "РРЅС„РѕСЂРјР°С†РёСЏ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("У Вас нет прав перевода Листа Заказа на предыдущую стадию!");
+                        MessageBox.Show("РЈ Р’Р°СЃ РЅРµС‚ РїСЂР°РІ РїРµСЂРµРІРѕРґР° Р›РёСЃС‚Р° Р—Р°РєР°Р·Р° РЅР° РїСЂРµРґС‹РґСѓС‰СѓСЋ СЃС‚Р°РґРёСЋ!");
                     }
                 }
             }

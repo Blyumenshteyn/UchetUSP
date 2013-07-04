@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace UchetUSP
@@ -138,11 +137,13 @@ namespace UchetUSP
             //DocIdString = "0";
             //DocIdUtv = "0";
 
-            ConnectionString = "143515/143515@eoi";
-            PathString = @"C:\Documents and Settings\591056\Local Settings\Temp\KTPP\Templates\Excel";
+#if(DEBUG)
+            ConnectionString = "591014/591000@BASEEOI";
+            PathString = @"F:\tmp";
             EditRighsString = "0";
             DocIdString = "0";
             DocIdUtv = "0";
+#endif
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

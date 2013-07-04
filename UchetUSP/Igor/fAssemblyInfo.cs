@@ -41,7 +41,7 @@ namespace UchetUSP
             //doMagic();
             _fillList();
 
-            int assDiffic = _ASSEMBLY_ORDERS.getAssDiffic(assId);
+            int assDiffic = AssemblyOrders.getAssDiffic(assId);
             if (assDiffic == 0)
             {
                 lblAssDiffic.Text = "Не задано";

@@ -81,11 +81,11 @@ namespace UchetUSP
             bttnNext.Enabled = true; //при переходе со след. страницы назад
 
             _setBorderPages(1);
-            tBGetterPosition.Text = _ASSEMBLY_ORDERS.getCustomerPosition(_orderNum);
+            tBGetterPosition.Text = AssemblyOrders.getCustomerPosition(_orderNum);
 
-            string customerSurname = _ASSEMBLY_ORDERS.getCustomerSurname(_orderNum);
+            string customerSurname = AssemblyOrders.getCustomerSurname(_orderNum);
             tBGetterSurname.Text = customerSurname;
-            tBGiverSurname.Text = _ASSEMBLY_ORDERS.getCreatorSurname(_orderNum);
+            tBGiverSurname.Text = AssemblyOrders.getCreatorSurname(_orderNum);
 
             _setDict(Dexcel, "CUSTOMER_SURNAME", customerSurname);
         }
@@ -113,34 +113,34 @@ namespace UchetUSP
             _setDict(Dexcel, "ASSEMBLY_DELIVERY_DATE", dTPDeliveryDate.Value.ToShortDateString());
             //_setDict(D, "ASSEMBLY_DELIVERY_DATE", dTPDeliveryDate.Value.ToString());
 
-            int assNum = _ASSEMBLY_ORDERS.getAssNum(_orderNum);
+            int assNum = AssemblyOrders.getAssNum(_orderNum);
             if (assNum != 0)
             {
                 _setDict(Dexcel, "ASSEMBLY_NUM", assNum.ToString()); 
             }
             _setDict(Dexcel, "NUM", _orderNum.ToString());
-            _setDict(Dexcel, "WORKSHOP_CODE", _ASSEMBLY_ORDERS.getWorkshopCode(_orderNum).ToString());
+            _setDict(Dexcel, "WORKSHOP_CODE", AssemblyOrders.getWorkshopCode(_orderNum).ToString());
 
-            if (_ASSEMBLY_ORDERS.isTZ(_orderNum))
+            if (AssemblyOrders.isTZ(_orderNum))
             {
-                string idTZ = _ASSEMBLY_ORDERS.getTZId(_orderNum);
-                _setDict(Dexcel, "PRODUCT_CODE", _ASSEMBLY_ORDERS.getProductCode_TZ(idTZ));
-                _setDict(Dexcel, "PART_TITLE", _ASSEMBLY_ORDERS.getPartTitle_TZ(idTZ));
+                string idTZ = AssemblyOrders.getTZId(_orderNum);
+                _setDict(Dexcel, "PRODUCT_CODE", AssemblyOrders.getProductCode_TZ(idTZ));
+                _setDict(Dexcel, "PART_TITLE", AssemblyOrders.getPartTitle_TZ(idTZ));
             }
             else
             {
-                _setDict(Dexcel, "PRODUCT_CODE", _ASSEMBLY_ORDERS.getProductCode(_orderNum).ToString());
-                _setDict(Dexcel, "PART_TITLE", _ASSEMBLY_ORDERS.getPartTitle(_orderNum));
+                _setDict(Dexcel, "PRODUCT_CODE", AssemblyOrders.getProductCode(_orderNum).ToString());
+                _setDict(Dexcel, "PART_TITLE", AssemblyOrders.getPartTitle(_orderNum));
             }
 
-            _setDict(Dexcel, "PART_NAME", _ASSEMBLY_ORDERS.getPartName(_orderNum));
-            _setDict(Dexcel, "TZ_NUM", _ASSEMBLY_ORDERS.getTZnumber(_orderNum));
-            _setDict(Dexcel, "TECH_OPERATION_NAME", _ASSEMBLY_ORDERS.getTechOperationName(_orderNum));
-            _setDict(Dexcel, "PARTS_COUNT", _ASSEMBLY_ORDERS.getPartsCount(_orderNum).ToString());
+            _setDict(Dexcel, "PART_NAME", AssemblyOrders.getPartName(_orderNum));
+            _setDict(Dexcel, "TZ_NUM", AssemblyOrders.getTZnumber(_orderNum));
+            _setDict(Dexcel, "TECH_OPERATION_NAME", AssemblyOrders.getTechOperationName(_orderNum));
+            _setDict(Dexcel, "PARTS_COUNT", AssemblyOrders.getPartsCount(_orderNum).ToString());
 
-            _setDict(Dexcel, "CREATION_DATE", _ASSEMBLY_ORDERS.getCreationDate(_orderNum).ToShortDateString());
-            _setDict(Dexcel, "DEMAND_DATE", _ASSEMBLY_ORDERS.getDemandDate(_orderNum).ToShortDateString());
-            _setDict(Dexcel, "ASSEMBLY_CREATOR_SURNAME", _ASSEMBLY_ORDERS.getAssCreatorSurname(_orderNum));
+            _setDict(Dexcel, "CREATION_DATE", AssemblyOrders.getCreationDate(_orderNum).ToShortDateString());
+            _setDict(Dexcel, "DEMAND_DATE", AssemblyOrders.getDemandDate(_orderNum).ToShortDateString());
+            _setDict(Dexcel, "ASSEMBLY_CREATOR_SURNAME", AssemblyOrders.getAssCreatorSurname(_orderNum));
         }
 
         void _writeToDB()
@@ -174,7 +174,7 @@ namespace UchetUSP
         void _generateOrder()
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
-            int assId = _ASSEMBLY_ORDERS.getAssId(_orderNum);
+            int assId = AssemblyOrders.getAssId(_orderNum);
             dict = _ASSEMBLIES.getElements(assId);
 
             xlsAssemblyOrder2 order = new xlsAssemblyOrder2(Dexcel, dict);

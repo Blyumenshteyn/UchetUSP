@@ -68,6 +68,7 @@ namespace UchetUSP
                     newLaoutOrder.LayoutMainForm();
                 }
 
+                //TODO добавить данные о юзере
                 setSizeForm();
                 UpdateMenu();
             }

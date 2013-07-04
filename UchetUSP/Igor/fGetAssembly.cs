@@ -75,8 +75,8 @@ namespace UchetUSP
 
             bttnNext.Enabled = true; //при переходе со след. страницы назад
 
-            tBCustomerSurname.Text = _ASSEMBLY_ORDERS.getCustomerSurname(_orderNum);
-            tBCreatorSurname.Text = _ASSEMBLY_ORDERS.getCreatorSurname(_orderNum);
+            tBCustomerSurname.Text = AssemblyOrders.getCustomerSurname(_orderNum);
+            tBCreatorSurname.Text = AssemblyOrders.getCreatorSurname(_orderNum);
 
             _setBorderPages(1);
         }
